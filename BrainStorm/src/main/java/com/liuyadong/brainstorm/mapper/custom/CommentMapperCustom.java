@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface CommentMapperCustom {
 
-	//根据文章id获取评论列表
-	public List<CommentCustom> listCommentByArticleId(@Param(value="status")  Integer status,@Param(value="id") Integer id);
+	//根据想法id获取评论列表
+	public List<CommentCustom> listCommentByThoughtId(@Param(value="status")  Integer status,@Param(value="id") Integer id);
 	
 	//获得评论列表分页
 	public List<CommentCustom> listCommentByPage(@Param(value="status") Integer status,@Param(value="startPos") Integer startPos, @Param(value="pageSize") Integer pageSize) throws Exception;

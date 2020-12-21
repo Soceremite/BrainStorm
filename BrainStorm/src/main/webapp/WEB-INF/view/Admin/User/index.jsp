@@ -45,7 +45,7 @@
         <th>用户名</th>
         <th>昵称</th>
         <th>电子邮件</th>
-        <th>文章</th>
+        <th>想法</th>
         <th>状态</th>
         <th>操作</th>
         <th>ID</th>
@@ -65,7 +65,7 @@
                 ${u.userEmail}
             </td>
             <td>
-                ${u.articleCount}
+                ${u.thoughtCount}
             </td>
             <td>
                 <c:choose>

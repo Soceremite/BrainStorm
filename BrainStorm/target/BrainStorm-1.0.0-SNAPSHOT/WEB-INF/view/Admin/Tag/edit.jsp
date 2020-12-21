@@ -88,7 +88,7 @@
                 <tr>
                     <th>id</th>
                     <th>名称</th>
-                    <th>文章数</th>
+                    <th>想法数</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
@@ -102,14 +102,14 @@
                             <a href="/tag/${c.tagId}" target="_blank">${c.tagName}</a>
                         </td>
                         <td>
-                            <a href="/tag/${c.tagId}" target="_blank">${c.articleCount}</a>
+                            <a href="/tag/${c.tagId}" target="_blank">${c.thoughtCount}</a>
                         </td>
                         <td>
                                 ${c.tagStatus}
                         </td>
                         <td>
                             <a href="/admin/tag/edit/${c.tagId}" class="layui-btn layui-btn-mini">编辑</a>
-                            <c:if test="${c.articleCount==0}">
+                            <c:if test="${c.thoughtCount==0}">
                                 <a href="/admin/tag/delete/${c.tagId}" class="layui-btn layui-btn-danger layui-btn-mini" onclick="return confirmDelete()">删除</a>
                             </c:if>
 
@@ -122,7 +122,7 @@
             <blockquote class="layui-elem-quote layui-quote-nm">
                 温馨提示：
                 <ul>
-                    <li>如果该分类包含文章，将不可删除</li>
+                    <li>如果该分类包含想法，将不可删除</li>
                     <li>分类状态为1表示将显示在侧边栏，为0表示不显示在侧边栏(依然显示在正文)</li>
                 </ul>
             </blockquote>

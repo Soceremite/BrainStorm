@@ -9,7 +9,7 @@ public class Comment {
 
     private String commentPname;
 
-    private Integer commentArticleId;
+    private Integer commentThoughtId;
 
     private String commentAuthorName;
 
@@ -53,12 +53,12 @@ public class Comment {
         this.commentPname = commentPname == null ? null : commentPname.trim();
     }
 
-    public Integer getCommentArticleId() {
-        return commentArticleId;
+    public Integer getCommentThoughtId() {
+        return commentThoughtId;
     }
 
-    public void setCommentArticleId(Integer commentArticleId) {
-        this.commentArticleId = commentArticleId;
+    public void setCommentThoughtId(Integer commentThoughtId) {
+        this.commentThoughtId = commentThoughtId;
     }
 
     public String getCommentAuthorName() {

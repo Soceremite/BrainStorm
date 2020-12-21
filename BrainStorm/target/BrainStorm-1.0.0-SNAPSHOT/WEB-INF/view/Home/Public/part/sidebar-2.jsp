@@ -7,12 +7,12 @@
 --%>
 <%--
     一般用于首页侧边栏：
-    包括 关于本站，网站概况，热评文章，所有标签，随机文章 等小工具
+    包括 关于本站，网站概况，热评想法，所有标签，随机想法 等小工具
 
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%--博客主体-右侧侧边栏 start--%>
+<%--头脑风暴主体-右侧侧边栏 start--%>
 <div id="sidebar" class="widget-area all-sidebar"
      style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 
@@ -65,7 +65,7 @@
                     </li>
                 </ul>
                 <div class="about-inf">
-                    <span class="about-pn">文章 ${siteBasicStatistics[0]} </span>
+                    <span class="about-pn">想法 ${siteBasicStatistics[0]} </span>
                     <span class="about-cn">留言 ${siteBasicStatistics[1]} </span>
                 </div>
             </div>
@@ -81,7 +81,7 @@
         </h3>
         <div class="textwidget widget-text">
             <ul class="site-profile">
-                <li><i class="fa fa-file-o"></i> 文章总数：${siteBasicStatistics[0]} 篇</li>
+                <li><i class="fa fa-file-o"></i> 想法总数：${siteBasicStatistics[0]} 篇</li>
                 <li><i class="fa fa-commenting-o"></i> 留言数量：${siteBasicStatistics[1]} 条</li>
                 <li><i class="fa fa-folder-o"></i> 分类数量：${siteBasicStatistics[2]} 个</li>
                 <li><i class="fa fa-tags"></i> 标签总数：${siteBasicStatistics[3]} 个</li>
@@ -89,7 +89,7 @@
                 <li><i class="fa fa-eye"></i> 浏览总量：${siteBasicStatistics[5]} 次</li>
                 <li><i class="fa fa-pencil-square-o"></i> 最后更新：
                     <span style="color:#2F889A">
-                                        <fmt:formatDate value="${lastUpdateArticle.articleUpdateTime}" pattern="yyyy年MM月dd日"/>
+                                        <fmt:formatDate value="${lastUpdateThought.thoughtUpdateTime}" pattern="yyyy年MM月dd日"/>
 
                                    </span>
                 </li>
@@ -99,18 +99,18 @@
     </aside>
     <%--网站概况 end--%>
 
-    <%--热评文章 start--%>
+    <%--热评想法 start--%>
     <aside class="widget hot_comment">
         <h3 class="widget-title">
-            <i class="fa fa-bars"></i>热评文章
+            <i class="fa fa-bars"></i>热评想法
         </h3>
         <div id="hot_comment_widget">
             <ul>
-                <c:forEach items="${mostCommentArticleList}" var="m">
+                <c:forEach items="${mostCommentThoughtList}" var="m">
                     <li>
-                        <a href="/article/${m.articleId}" rel="bookmark"
-                           title=" (${m.articleCommentCount}条评论)">
-                                ${m.articleTitle}
+                        <a href="/thought/${m.thoughtId}" rel="bookmark"
+                           title=" (${m.thoughtCommentCount}条评论)">
+                                ${m.thoughtTitle}
                         </a>
                     </li>
                 </c:forEach>
@@ -118,7 +118,7 @@
         </div>
         <div class="clear"></div>
     </aside>
-    <%--热评文章 end--%>
+    <%--热评想法 end--%>
 
     <%--所有标签 start--%>
     <aside class="widget">
@@ -128,7 +128,7 @@
         <div class="tagcloud">
             <c:forEach items="${tagList}" var="tag">
                 <a href="/tag/${tag.tagId}"
-                   class="tag-link-129 tag-link-position-1" title="${tag.articleCount}个话题"
+                   class="tag-link-129 tag-link-position-1" title="${tag.thoughtCount}个话题"
                    style="font-size: 14px;">
                         ${tag.tagName}
                 </a>
@@ -140,17 +140,17 @@
     <%--所有标签 end--%>
 
 
-    <%--随机文章 start--%>
+    <%--随机想法 start--%>
     <aside id="random_post-7" class="widget random_post wow fadeInUp" data-wow-delay="0.3s">
         <h3 class="widget-title">
-            <i class="fa fa-bars"></i>随机文章
+            <i class="fa fa-bars"></i>随机想法
         </h3>
         <div id="random_post_widget">
             <ul>
-                <c:forEach items="${randomArticleList}" var="r">
+                <c:forEach items="${randomThoughtList}" var="r">
                     <li>
-                        <a href="/article/${r.articleId}" rel="bookmark">
-                                ${r.articleTitle}
+                        <a href="/thought/${r.thoughtId}" rel="bookmark">
+                                ${r.thoughtTitle}
                         </a>
                     </li>
                 </c:forEach>
@@ -158,7 +158,7 @@
         </div>
         <div class="clear"></div>
     </aside>
-    <%--近期文章 end--%>
+    <%--近期想法 end--%>
 
     <%--最新评论 start--%>
     <aside id="recent_comments-2" class="widget recent_comments wow fadeInUp" data-wow-delay="0.3s"><h3
@@ -167,7 +167,7 @@
             <ul>
                 <c:forEach items="${recentCommentList}" var="r">
                 <li style="border: none;">
-                    <a href="/article/${r.articleCustom.articleId}/#anchor-comment-${r.commentCustom.commentId}" title="${r.articleCustom.articleTitle}" rel="external nofollow">
+                    <a href="/thought/${r.thoughtCustom.thoughtId}/#anchor-comment-${r.commentCustom.commentId}" title="${r.thoughtCustom.thoughtTitle}" rel="external nofollow">
                         <img alt=""src="${r.commentCustom.commentAuthorAvatar}" class="avatar avatar-64 photo" height="64" width="64">
                         <span class="comment_author">
                             <strong>${r.commentCustom.commentAuthorName}</strong>
@@ -186,4 +186,4 @@
 
 
 
-<%--博客主体-右侧侧边栏 end--%>
+<%--头脑风暴主体-右侧侧边栏 end--%>

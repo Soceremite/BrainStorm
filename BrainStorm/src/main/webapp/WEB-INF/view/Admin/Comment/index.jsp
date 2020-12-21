@@ -103,8 +103,8 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="/article/${c.articleCustom.articleId}"
-                                   target="_blank">${c.articleCustom.articleTitle}</a>
+                                <a href="/thought/${c.thoughtCustom.thoughtId}"
+                                   target="_blank">${c.thoughtCustom.thoughtTitle}</a>
                             </td>
                             <td>
                                 <fmt:formatDate value="${c.commentCustom.commentCreateTime}" pattern="yyyy年MM月dd日 HH:dd:ss"/>
@@ -256,8 +256,8 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="/article/${c.articleCustom.articleId}"
-                                   target="_blank">${c.articleCustom.articleTitle}</a>
+                                <a href="/thought/${c.thoughtCustom.thoughtId}"
+                                   target="_blank">${c.thoughtCustom.thoughtTitle}</a>
                             </td>
                             <td>
                                 <fmt:formatDate value="${c.commentCustom.commentCreateTime}" pattern="yyyy年MM月dd日 HH:dd:ss"/>

@@ -2,7 +2,7 @@ package com.liuyadong.brainstorm.service;
 
 
 import com.liuyadong.brainstorm.entity.Category;
-import com.liuyadong.brainstorm.entity.custom.ArticleListVo;
+import com.liuyadong.brainstorm.entity.custom.ThoughtListVo;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
 
 
@@ -16,8 +16,8 @@ public interface CategoryService {
 	//获得分类列表
 	public List<CategoryCustom> listCategory(Integer status) throws Exception;
 
-	//获得带有该分类的文章列表
-	public  List<ArticleListVo> listArticleWithCategoryByPage(Integer status,Integer pageNow,Integer pageSize,Integer cateId) throws Exception;
+	//获得带有该分类的想法列表
+	public  List<ThoughtListVo> listThoughtWithCategoryByPage(Integer status,Integer pageNow,Integer pageSize,Integer cateId) throws Exception;
 
 	//获得某个分类信息
 	public CategoryCustom getCategory(Integer status,Integer id) throws Exception;

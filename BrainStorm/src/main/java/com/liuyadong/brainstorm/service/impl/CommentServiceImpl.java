@@ -1,11 +1,11 @@
 package com.liuyadong.brainstorm.service.impl;
 
 import com.liuyadong.brainstorm.entity.Comment;
-import com.liuyadong.brainstorm.entity.custom.ArticleCustom;
+import com.liuyadong.brainstorm.entity.custom.ThoughtCustom;
 import com.liuyadong.brainstorm.entity.custom.CommentListVo;
-import com.liuyadong.brainstorm.mapper.ArticleMapper;
+import com.liuyadong.brainstorm.mapper.ThoughtMapper;
 import com.liuyadong.brainstorm.mapper.CommentMapper;
-import com.liuyadong.brainstorm.mapper.custom.ArticleMapperCustom;
+import com.liuyadong.brainstorm.mapper.custom.ThoughtMapperCustom;
 import com.liuyadong.brainstorm.mapper.custom.CommentMapperCustom;
 import com.liuyadong.brainstorm.entity.custom.CommentCustom;
 import com.liuyadong.brainstorm.service.CommentService;
@@ -28,10 +28,10 @@ public class CommentServiceImpl implements CommentService{
 	private CommentMapper commentMapper;
 
 	@Autowired
-	private ArticleMapper articleMapper;
+	private ThoughtMapper thoughtMapper;
 
 	@Autowired
-	private ArticleMapperCustom articleMapperCustom;
+	private ThoughtMapperCustom thoughtMapperCustom;
 
 	@Override
 	public void insertComment(HttpServletRequest request, Comment comment) throws Exception {
@@ -41,8 +41,8 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
-	public List<CommentCustom> listCommentByArticleId(Integer status,Integer articleId) {
-		List<CommentCustom> commentCustomList = commentMapperCustom.listCommentByArticleId(status,articleId);
+	public List<CommentCustom> listCommentByThoughtId(Integer status,Integer thoughtId) {
+		List<CommentCustom> commentCustomList = commentMapperCustom.listCommentByThoughtId(status,thoughtId);
 		return commentCustomList;
 	}
 
@@ -74,10 +74,10 @@ public class CommentServiceImpl implements CommentService{
 
 		for(int i=0;i<commentCustomList.size();i++) {
 			CommentListVo commentListVo = new CommentListVo();
-			//获得文章信息
-			Integer articleId = commentCustomList.get(i).getCommentArticleId();
-			ArticleCustom articleCustom = articleMapperCustom.getArticleById(status,articleId);
-			commentListVo.setArticleCustom(articleCustom);
+			//获得想法信息
+			Integer thoughtId = commentCustomList.get(i).getCommentThoughtId();
+			ThoughtCustom thoughtCustom = thoughtMapperCustom.getThoughtById(status,thoughtId);
+			commentListVo.setThoughtCustom(thoughtCustom);
 
 			//评论信息
             CommentCustom commentCustom = commentCustomList.get(i);
@@ -104,10 +104,10 @@ public class CommentServiceImpl implements CommentService{
 
 		for(int i=0;i<commentCustomList.size();i++) {
 			CommentListVo commentListVo = new CommentListVo();
-			//获得文章信息
-			Integer articleId = commentCustomList.get(i).getCommentArticleId();
-			ArticleCustom articleCustom = articleMapperCustom.getArticleById(status,articleId);
-			commentListVo.setArticleCustom(articleCustom);
+			//获得想法信息
+			Integer thoughtId = commentCustomList.get(i).getCommentThoughtId();
+			ThoughtCustom thoughtCustom = thoughtMapperCustom.getThoughtById(status,thoughtId);
+			commentListVo.setThoughtCustom(thoughtCustom);
 
 			//评论信息
 			CommentCustom commentCustom = commentCustomList.get(i);
@@ -155,9 +155,9 @@ public class CommentServiceImpl implements CommentService{
 			CommentCustom commentCustom = commentCustomList.get(i);
 			commentCustom.setCommentAuthorAvatar(avatar);
 			commentListVo.setCommentCustom(commentCustom);
-			//找到评论对应的文章信息
-			ArticleCustom articleCustom = articleMapperCustom.getArticleById(1,commentCustom.getCommentArticleId());
-			commentListVo.setArticleCustom(articleCustom);
+			//找到评论对应的想法信息
+			ThoughtCustom thoughtCustom = thoughtMapperCustom.getThoughtById(1,commentCustom.getCommentThoughtId());
+			commentListVo.setThoughtCustom(thoughtCustom);
 
 			recentCommentList.add(commentListVo);
 		}

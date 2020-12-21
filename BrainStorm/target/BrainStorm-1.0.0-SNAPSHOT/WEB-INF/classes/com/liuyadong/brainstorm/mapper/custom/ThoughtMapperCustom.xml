@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liuyadong.brainstorm.mapper.custom.ThoughtMapperCustom" >
+
+    <sql id="thought_table_all_columns">
+        thought_id,
+        thought_user_id,
+        thought_title,
+        thought_content,
+        thought_parent_category_id,
+        thought_child_category_id,
+        thought_tag_ids,
+        thought_view_count,
+        thought_comment_count,
+        thought_like_count,
+        thought_post_time,
+        thought_update_time,
+        thought_is_comment,
+        thought_status,
+        thought_order
+    </sql>
+
+
+    <!--获取想法总数-->
+    <select id="countThought" resultType="Integer">
+        SELECT COUNT(*) FROM `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+    </select>
+
+    <!--获得想法留言总数-->
+    <select id="countThoughtComment" resultType="Integer">
+        SELECT SUM(thought_comment_count) FROM thought
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="countThoughtView" resultType="Integer">
+        SELECT SUM(thought_view_count) FROM thought
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+    </select>
+
+    <!--根据id查询用户信息-->
+    <select id="getThoughtById" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status} AND
+            </if>
+            thought_id=#{id}
+        </where>
+    </select>
+
+
+    <!--获得所有想法-->
+    <select id="listThought" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+        ORDER BY thought_status ASC, thought_order DESC, thought_id DESC
+    </select>
+
+
+    <!--想法列表查询-->
+    <select id="getThoughtList" parameterType="com.liuyadong.brainstorm.entity.custom.ThoughtListVo"
+            resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM thought
+        <trim prefix="WHERE" prefixOverrides="AND |OR " suffixOverrides="AND |OR">
+           <if test="status!=null">
+              thought_status=#{status} AND
+           </if>
+            <if test="thoughtCustom!=null">
+                <if test="thoughtCustom.post_title!=null and thoughtCustom.post_title!=''">
+                    thought_title LIKE '%${thoughtCustom.thoughtTitle}%'
+                </if>
+            </if>
+        </trim>
+        ORDER BY thought_status ASC, thought_order DESC, thought_id DESC
+
+    </select>
+
+
+    <!--通过分页查询想法-->
+    <select id="listThoughtByPage" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+         SELECT
+         <include refid="thought_table_all_columns"/>
+         FROM `thought`
+         <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+         </where>
+         ORDER BY thought_status ASC, thought_order DESC, thought_id DESC
+         limit #{startPos},#{pageSize}
+    </select>
+
+
+    <!--查询结果统计-->
+    <select id="getSearchResultCount"  resultType="Integer">
+        SELECT count(*) FROM `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status} AND
+            </if>
+            thought_status > 0 AND
+            thought_title LIKE "%${query}%" OR
+            thought_content LIKE "%${query}%"
+        </where>
+
+    </select>
+
+    <!--想法查询分页显示-->
+    <select id="listSearchResultByPage"  resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status} AND
+            </if>
+            thought_status > 0 AND
+            thought_title LIKE '%${query}%' OR
+            thought_content LIKE '%${query}%'
+        </where>
+        ORDER BY  thought_status ASC, thought_order DESC, thought_id DESC
+        limit #{startPos},#{pageSize}
+    </select>
+
+    <!--获得相同分类的想法-->
+    <select id="listThoughtWithSameCategory"  resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <trim prefix="WHERE" prefixOverrides="AND |OR " suffixOverrides="AND |OR">
+            <if test="status!=null">
+                thought_status=#{status} AND
+            </if>
+            <if test="parentCategory!=null">
+                thought_parent_category_id=#{parentCategory} OR
+            </if>
+            <if test="childCategory!=null">
+                thought_child_category_id=#{childCategory}
+            </if>
+
+        </trim>
+        ORDER BY  thought_status ASC, thought_order DESC, thought_id DESC
+        limit #{limit}
+    </select>
+
+    <!--获得访问量较多的想法-->
+    <select id="listThoughtByViewCount" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+        ORDER BY thought_view_count DESC,thought_order DESC, thought_id DESC
+        limit #{limit}
+
+    </select>
+
+
+    <!--获得下一篇的想法-->
+    <select id="getAfterThought" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            thought_id > #{id}
+            <if test="status!=null">
+                AND thought_status=#{status}
+            </if>
+        </where>
+        ORDER BY thought_id
+        limit 1
+    </select>
+    <!--获得上一篇的想法-->
+    <select id="getPreThought" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            thought_id &lt; #{id}
+            <if test="status!=null">
+               AND thought_status=#{status}
+            </if>
+        </where>
+        ORDER BY thought_id
+        limit 1
+    </select>
+
+    <!--获得随机想法-->
+    <select id="listRandomThought" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+        ORDER BY
+        RAND()
+        limit #{limit}
+    </select>
+
+    <!--获得评论数较多的想法列表-->
+    <select id="listThoughtByCommentCount" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM
+        `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+        ORDER BY
+        thought_comment_count DESC,thought_order DESC, thought_id DESC
+        limit #{limit}
+    </select>
+
+
+    <!--想法详情页面内容显示-->
+    <select id="getThoughtDetailById" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status}
+            </if>
+        </where>
+    </select>
+
+
+    <!--统计该分类下有多少想法-->
+    <select id="countThoughtByCategory" resultType="Integer">
+        SELECT count(*)
+        FROM  `thought`
+        <where>
+            <if test="status!=null">
+                thought_status=#{status} AND
+            </if>
+
+            thought_parent_category_id=#{id} OR
+            thought_child_category_id=#{id}
+
+        </where>
+    </select>
+
+    <!--统计该标签下有多少想法-->
+    <select id="countThoughtByTag" resultType="Integer">
+        SELECT count(*)
+        FROM  `thought`
+        <where>
+            thought.thought_tag_ids = #{id} OR
+            thought.thought_tag_ids LIKE "${id},%" OR
+            thought.thought_tag_ids LIKE "%,${id},%" OR
+            thought.thought_tag_ids LIKE "%,${id}"
+            <if test="status!=null">
+               AND thought_status=#{status}
+            </if>
+        </where>
+
+    </select>
+
+    <update id="updateCommentCount" parameterType="Integer">
+        UPDATE `thought`
+        SET thought_comment_count=
+        (
+              SELECT count(*) FROM `comment`
+              WHERE thought.thought_id=comment.comment_thought_id AND comment_status=1
+        )
+        WHERE thought_id=#{thoughtId}
+    </update>
+
+    <!--获得最后更新的记录-->
+    <select id="getLastUpdateThought" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT
+        <include refid="thought_table_all_columns"/>
+        FROM `thought`
+        WHERE thought_update_time=
+        (
+          SELECT max(thought_update_time) FROM thought
+        )
+    </select>
+
+</mapper>

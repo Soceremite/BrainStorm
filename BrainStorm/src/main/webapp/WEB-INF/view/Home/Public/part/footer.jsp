@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%--
-    博客页脚部分
+    头脑风暴页脚部分
     包括：页脚部分
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

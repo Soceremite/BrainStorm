@@ -1,8 +1,8 @@
 package com.liuyadong.brainstorm.controller.Home;
 
-import com.liuyadong.brainstorm.entity.Article;
+import com.liuyadong.brainstorm.entity.Thought;
 import com.liuyadong.brainstorm.entity.Comment;
-import com.liuyadong.brainstorm.service.ArticleService;
+import com.liuyadong.brainstorm.service.ThoughtService;
 import com.liuyadong.brainstorm.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class CommentController {
 	private CommentService commentService;
 
 	@Autowired
-	private ArticleService articleService;
+	private ThoughtService thoughtService;
 	
 	//添加评论
 	@RequestMapping(value = "/comment/insert",method = {RequestMethod.POST})
@@ -29,9 +29,9 @@ public class CommentController {
 		//添加评论
 		comment.setCommentCreateTime(new Date());
 		commentService.insertComment(request,comment);
-		//更新文章的评论数
-		Article article = articleService.getArticleById(null,comment.getCommentArticleId());
-		articleService.updateCommentCount(article.getArticleId());
+		//更新想法的评论数
+		Thought thought = thoughtService.getThoughtById(null,comment.getCommentThoughtId());
+		thoughtService.updateCommentCount(thought.getThoughtId());
 	}
 
 

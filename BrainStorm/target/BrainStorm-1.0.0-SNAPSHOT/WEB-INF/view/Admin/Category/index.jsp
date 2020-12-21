@@ -108,7 +108,7 @@
                     <th>ID</th>
                     <th>pid</th>
                     <th>名称</th>
-                    <th>文章数</th>
+                    <th>想法数</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
@@ -123,7 +123,7 @@
                                 <a href="/category/${c.categoryId}" target="_blank">${c.categoryName}</a>
                             </td>
                             <td>
-                                <a href="/category/${c.categoryId}" target="_blank">${c.articleCount}</a>
+                                <a href="/category/${c.categoryId}" target="_blank">${c.thoughtCount}</a>
                             </td>
                             <td>
                                     <c:choose>
@@ -137,7 +137,7 @@
                             </td>
                             <td>
                                 <a href="/admin/category/edit/${c.categoryId}" class="layui-btn layui-btn-mini">编辑</a>
-                                <c:if test="${c.articleCount==0}">
+                                <c:if test="${c.thoughtCount==0}">
                                     <a href="/admin/category/delete/${c.categoryId}" class="layui-btn layui-btn-danger layui-btn-mini" onclick="return confirmDelete()">删除</a>
                                 </c:if>
                             </td>
@@ -151,7 +151,7 @@
                                         <a href="/category/${c2.categoryId}" target="_blank">${c2.categoryName}</a>
                                     </td>
                                     <td>
-                                        <a href="/category/${c2.categoryId}" target="_blank">${c2.articleCount}</a>
+                                        <a href="/category/${c2.categoryId}" target="_blank">${c2.thoughtCount}</a>
                                     </td>
                                     <td>
                                         <c:choose>
@@ -165,7 +165,7 @@
                                     </td>
                                     <td>
                                         <a href="/admin/category/edit/${c2.categoryId}" class="layui-btn layui-btn-mini">编辑</a>
-                                        <c:if test="${c2.articleCount==0}">
+                                        <c:if test="${c2.thoughtCount==0}">
                                             <a href="/admin/category/delete/${c2.categoryId}" class="layui-btn layui-btn-danger layui-btn-mini" onclick="return confirmDelete()">删除</a>
                                         </c:if>
                                     </td>
@@ -182,7 +182,7 @@
                 温馨提示：
                 <ul>
                     <li>分类最多只有两级，一级分类pid=0，二级分类pid=其父节点id</li>
-                    <li>如果该分类包含文章，将不可删除</li>
+                    <li>如果该分类包含想法，将不可删除</li>
                 </ul>
             </blockquote>
         </div>

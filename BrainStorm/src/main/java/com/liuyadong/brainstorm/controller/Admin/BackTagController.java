@@ -3,7 +3,7 @@ package com.liuyadong.brainstorm.controller.Admin;
 
 import com.liuyadong.brainstorm.entity.Tag;
 import com.liuyadong.brainstorm.entity.custom.TagCustom;
-import com.liuyadong.brainstorm.service.ArticleService;
+import com.liuyadong.brainstorm.service.ThoughtService;
 import com.liuyadong.brainstorm.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/admin/tag")
 public class BackTagController {
     @Autowired
-    private ArticleService articleService;
+    private ThoughtService thoughtService;
 
 
     @Autowired
@@ -50,8 +50,8 @@ public class BackTagController {
     @RequestMapping(value = "/delete/{id}")
     public String deleteTag(@PathVariable("id") Integer id) throws Exception {
 
-        //禁止删除有文章的分类
-        int count = articleService.countArticleWithTag(null,id);
+        //禁止删除有想法的分类
+        int count = thoughtService.countThoughtWithTag(null,id);
         if (count == 0) {
             tagService.deleteTag(id);
         }

@@ -25,6 +25,6 @@ public interface UserMapperCustom {
 	//根据Email查询用户
 	public User getUserByEmail(String email) throws Exception;
 
-	//用户的文章数
-	public Integer countArticleByUser(@Param(value = "id") Integer id) throws Exception;
+	//用户的想法数
+	public Integer countThoughtByUser(@Param(value = "id") Integer id) throws Exception;
 }

@@ -1,11 +1,11 @@
 package com.liuyadong.brainstorm.service.impl;
 
 import com.liuyadong.brainstorm.mapper.CategoryMapper;
-import com.liuyadong.brainstorm.mapper.custom.ArticleMapperCustom;
+import com.liuyadong.brainstorm.mapper.custom.ThoughtMapperCustom;
 import com.liuyadong.brainstorm.mapper.custom.CategoryMapperCustom;
 import com.liuyadong.brainstorm.entity.Category;
-import com.liuyadong.brainstorm.entity.custom.ArticleCustom;
-import com.liuyadong.brainstorm.entity.custom.ArticleListVo;
+import com.liuyadong.brainstorm.entity.custom.ThoughtCustom;
+import com.liuyadong.brainstorm.entity.custom.ThoughtListVo;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
 import com.liuyadong.brainstorm.service.CategoryService;
 import com.liuyadong.brainstorm.util.others.Page;
@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryMapper categoryMapper;
 
 	@Autowired
-	private ArticleMapperCustom articleMapperCustom;
+	private ThoughtMapperCustom thoughtMapperCustom;
 
 	@Override
 	public Integer countCategory(Integer status) throws Exception {
@@ -41,17 +41,17 @@ public class CategoryServiceImpl implements CategoryService {
 		List<CategoryCustom> categoryCustomList = categoryMapperCustom.listCategory(status);
 		for(int i=0;i<categoryCustomList.size();i++) {
 			Integer cateId = categoryCustomList.get(i).getCategoryId();
-			Integer count = articleMapperCustom.countArticleByCategory(status,cateId);
-			categoryCustomList.get(i).setArticleCount(count);
+			Integer count = thoughtMapperCustom.countThoughtByCategory(status,cateId);
+			categoryCustomList.get(i).setThoughtCount(count);
 		}
 
 		return categoryCustomList;
 	}
 	
 	@Override
-	public List<ArticleListVo> listArticleWithCategoryByPage(Integer status,Integer pageNow, Integer pageSize,Integer cateId) throws Exception {
-		List<ArticleListVo> articleListVoList = new ArrayList<ArticleListVo>();
-		List<ArticleCustom> articleCustomList = new ArrayList<ArticleCustom>();
+	public List<ThoughtListVo> listThoughtWithCategoryByPage(Integer status,Integer pageNow, Integer pageSize,Integer cateId) throws Exception {
+		List<ThoughtListVo> thoughtListVoList = new ArrayList<ThoughtListVo>();
+		List<ThoughtCustom> thoughtCustomList = new ArrayList<ThoughtCustom>();
 		
 		//获得分类的信息
 		Category category = categoryMapper.selectByPrimaryKey(cateId);
@@ -62,28 +62,28 @@ public class CategoryServiceImpl implements CategoryService {
 
 		//分页显示
 		Page page = null;
-		int totalCount = articleMapperCustom.countArticleByCategory(status,cateId);
+		int totalCount = thoughtMapperCustom.countThoughtByCategory(status,cateId);
 
 		if (pageNow != null) {
 			page = new Page(totalCount, pageNow,pageSize);
-			articleCustomList = categoryMapperCustom.listArticleWithCategoryByPage(status,cateId,page.getStartPos(), page.getPageSize());
+			thoughtCustomList = categoryMapperCustom.listThoughtWithCategoryByPage(status,cateId,page.getStartPos(), page.getPageSize());
 		} else {
 			page = new Page(totalCount, 1,pageSize);
-			articleCustomList = categoryMapperCustom.listArticleWithCategoryByPage(status,cateId,page.getStartPos(), page.getPageSize());
+			thoughtCustomList = categoryMapperCustom.listThoughtWithCategoryByPage(status,cateId,page.getStartPos(), page.getPageSize());
 			
 		}
-		for(int i=0;i<articleCustomList.size();i++) {
-			ArticleListVo articleListVo = new ArticleListVo();
+		for(int i=0;i<thoughtCustomList.size();i++) {
+			ThoughtListVo thoughtListVo = new ThoughtListVo();
 			
-			//1、将文章信息装入 articleListVo
-			ArticleCustom articleCustom = articleCustomList.get(i);
-			articleListVo.setArticleCustom(articleCustom);
+			//1、将想法信息装入 thoughtListVo
+			ThoughtCustom thoughtCustom = thoughtCustomList.get(i);
+			thoughtListVo.setThoughtCustom(thoughtCustom);
 
 
-			//2、将分类信息装到 articleListVoList 中
+			//2、将分类信息装到 thoughtListVoList 中
 			List<CategoryCustom> categoryCustomList = new ArrayList<CategoryCustom>();
-			Integer parentCategoryId =articleCustomList.get(i).getArticleParentCategoryId();
-			Integer childCategoryId =articleCustomList.get(i).getArticleChildCategoryId();
+			Integer parentCategoryId =thoughtCustomList.get(i).getThoughtParentCategoryId();
+			Integer childCategoryId =thoughtCustomList.get(i).getThoughtChildCategoryId();
 			CategoryCustom categoryCustom = categoryMapperCustom.getCategoryById(status, parentCategoryId);
 			CategoryCustom categoryCustom2 = categoryMapperCustom.getCategoryById(status,childCategoryId);
 			if(categoryCustom!=null) {
@@ -92,16 +92,16 @@ public class CategoryServiceImpl implements CategoryService {
 			if(categoryCustom2!=null) {
 				categoryCustomList.add(categoryCustom2);
 			}
-			articleListVo.setCategoryCustomList(categoryCustomList);
+			thoughtListVo.setCategoryCustomList(categoryCustomList);
 
-			articleListVoList.add(articleListVo);
+			thoughtListVoList.add(thoughtListVo);
 		}
-        //如果该分类还没有文章
+        //如果该分类还没有想法
         if(totalCount!=0) {
             //2、将Page信息存储在第一个元素中
-            articleListVoList.get(0).setPage(page);
+            thoughtListVoList.get(0).setPage(page);
         }
-		return articleListVoList;
+		return thoughtListVoList;
 	}
 
 	@Override

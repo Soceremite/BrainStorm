@@ -85,11 +85,11 @@ function hideComment(id) {
 
 //添加草稿
 function insertDraft() {
-    if($("#articleContent").val!=""&&$("#articleTitle").val()!="") {
+    if($("#thoughtContent").val!=""&&$("#thoughtTitle").val()!="") {
         $.ajax({
             async: false,
             type: "POST",
-            url:'/admin/article/insert',
+            url:'/admin/thought/insert',
             contentType : "application/x-www-form-urlencoded; charset=utf-8",
             dataType: "text",
             complete:function () {
@@ -100,13 +100,13 @@ function insertDraft() {
 
 }
 
-//删除文章
-function deleteArticle(id) {
+//删除想法
+function deleteThought(id) {
     if(confirmDelete()==true){
         $.ajax({
             async: false,
             type: "POST",
-            url:'/admin/article/delete/'+id,
+            url:'/admin/thought/delete/'+id,
             contentType : "application/x-www-form-urlencoded; charset=utf-8",
             dataType: "text",
             complete:function () {
@@ -116,15 +116,15 @@ function deleteArticle(id) {
     }
 }
 
-//查询文章
-function queryArticle() {
+//查询想法
+function queryThought() {
     //提交form
-    $("#articleForm").attr("action", "/admin/article/search");
-    $("#articleForm").submit();
+    $("#thoughtForm").attr("action", "/admin/thought/search");
+    $("#thoughtForm").submit();
 }
 
-//批量删除文章
-function confirmDeleteArticleBatch() {
+//批量删除想法
+function confirmDeleteThoughtBatch() {
     if(confirmDelete()==true){
         var text = $("input:checkbox[name='ids']:checked").map(function(index,elem) {
             return $(elem).val();
@@ -132,7 +132,7 @@ function confirmDeleteArticleBatch() {
         $.ajax({
             async: false,
             type: "POST",
-            url:'/admin/article/deleteBatch',
+            url:'/admin/thought/deleteBatch',
             data:{ids:text},
             contentType : "application/x-www-form-urlencoded; charset=utf-8",
             dataType: "text",

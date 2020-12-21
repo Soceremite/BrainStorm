@@ -1,7 +1,7 @@
 package com.liuyadong.brainstorm.controller.Home;
 
 
-import com.liuyadong.brainstorm.entity.custom.ArticleListVo;
+import com.liuyadong.brainstorm.entity.custom.ThoughtListVo;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
 import com.liuyadong.brainstorm.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,36 +29,36 @@ public class CategoryController {
 		
 	}
 	
-	//根据分类查询文章
+	//根据分类查询想法
 	@RequestMapping("/category/{cateId}")
 	@ResponseBody
-	public ModelAndView ArticleListByCategoryView(@PathVariable("cateId") Integer cateId) throws Exception {
+	public ModelAndView ThoughtListByCategoryView(@PathVariable("cateId") Integer cateId) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		//设置每页显示条数
 		int pageSize = 10;
-		List<ArticleListVo> articleListVoList = categoryService.listArticleWithCategoryByPage(1,null,pageSize,cateId);
+		List<ThoughtListVo> thoughtListVoList = categoryService.listThoughtWithCategoryByPage(1,null,pageSize,cateId);
 
-		//如果articleListVoList=null表示该分类不存在，如果=0表示该分类暂时没有文章
-        modelAndView.addObject("articleListVoList",articleListVoList);
+		//如果thoughtListVoList=null表示该分类不存在，如果=0表示该分类暂时没有想法
+        modelAndView.addObject("thoughtListVoList",thoughtListVoList);
 
 		//该分类信息
 		CategoryCustom categoryCustom = categoryService.getCategoryById(1,cateId);
 		modelAndView.addObject("categoryCustom",categoryCustom);
 
-		modelAndView.setViewName("Home/Page/articleListByCategory");
+		modelAndView.setViewName("Home/Page/thoughtListByCategory");
 		return modelAndView;
 	}
 	
-	//根据分类查询文章分页
+	//根据分类查询想法分页
 	@RequestMapping("/category/{cateId}/p/{pageNow}")
 	@ResponseBody
-	public  ModelAndView ArticleListByCategoryAndPageView(@PathVariable("pageNow") Integer pageNow,@PathVariable("cateId") Integer cateId) throws Exception {
+	public  ModelAndView ThoughtListByCategoryAndPageView(@PathVariable("pageNow") Integer pageNow,@PathVariable("cateId") Integer cateId) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		//设置每页显示条数
 		int pageSize = 10;
-		List<ArticleListVo> articleListVoList = categoryService.listArticleWithCategoryByPage(1,pageNow,pageSize,cateId);
-		modelAndView.addObject("articleListVoList",articleListVoList);
-		modelAndView.setViewName("Home/Page/articleListByCategory");
+		List<ThoughtListVo> thoughtListVoList = categoryService.listThoughtWithCategoryByPage(1,pageNow,pageSize,cateId);
+		modelAndView.addObject("thoughtListVoList",thoughtListVoList);
+		modelAndView.setViewName("Home/Page/thoughtListByCategory");
 
         //该分类信息
         CategoryCustom categoryCustom = categoryService.getCategoryById(1,cateId);

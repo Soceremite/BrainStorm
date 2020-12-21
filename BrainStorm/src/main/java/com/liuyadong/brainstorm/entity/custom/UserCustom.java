@@ -3,14 +3,14 @@ package com.liuyadong.brainstorm.entity.custom;
 import com.liuyadong.brainstorm.entity.User;
 
 public class UserCustom extends User {
-    //用户的文章数
-    private Integer articleCount;
+    //用户的想法数
+    private Integer thoughtCount;
 
-    public Integer getArticleCount() {
-        return articleCount;
+    public Integer getThoughtCount() {
+        return thoughtCount;
     }
 
-    public void setArticleCount(Integer articleCount) {
-        this.articleCount = articleCount;
+    public void setThoughtCount(Integer thoughtCount) {
+        this.thoughtCount = thoughtCount;
     }
 }

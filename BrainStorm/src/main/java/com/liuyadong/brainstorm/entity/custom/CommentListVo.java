@@ -4,14 +4,14 @@ package com.liuyadong.brainstorm.entity.custom;
 import com.liuyadong.brainstorm.util.others.Page;
 
 /**
- *  用于封装评论信息，包括评论内容，作者信息，文章信息
+ *  用于封装评论信息，包括评论内容，作者信息，想法信息
   */
 public class CommentListVo {
     //评论信息
     private CommentCustom commentCustom;
 
-    //文章信息
-    private ArticleCustom articleCustom;
+    //想法信息
+    private ThoughtCustom thoughtCustom;
 
     //分页信息
     private Page page;
@@ -24,12 +24,12 @@ public class CommentListVo {
         this.commentCustom = commentCustom;
     }
 
-    public ArticleCustom getArticleCustom() {
-        return articleCustom;
+    public ThoughtCustom getThoughtCustom() {
+        return thoughtCustom;
     }
 
-    public void setArticleCustom(ArticleCustom articleCustom) {
-        this.articleCustom = articleCustom;
+    public void setThoughtCustom(ThoughtCustom thoughtCustom) {
+        this.thoughtCustom = thoughtCustom;
     }
 
     public Page getPage() {

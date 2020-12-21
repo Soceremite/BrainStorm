@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 	public List<UserCustom> listUser() throws Exception {
 		List<UserCustom> userCustomList = userMapperCustom.listUser();
 		for(int i=0;i<userCustomList.size();i++) {
-			Integer articleCount = userMapperCustom.countArticleByUser(userCustomList.get(i).getUserId());
-			userCustomList.get(i).setArticleCount(articleCount);
+			Integer thoughtCount = userMapperCustom.countThoughtByUser(userCustomList.get(i).getUserId());
+			userCustomList.get(i).setThoughtCount(thoughtCount);
 		}
 		return userCustomList;
 	}

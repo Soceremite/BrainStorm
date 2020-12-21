@@ -3,7 +3,7 @@ package com.liuyadong.brainstorm.controller.Admin;
 
 import com.liuyadong.brainstorm.entity.Category;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
-import com.liuyadong.brainstorm.service.ArticleService;
+import com.liuyadong.brainstorm.service.ThoughtService;
 import com.liuyadong.brainstorm.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/admin/category")
 public class BackCategoryController {
     @Autowired
-    private ArticleService articleService;
+    private ThoughtService thoughtService;
 
 
     @Autowired
@@ -53,8 +53,8 @@ public class BackCategoryController {
     @RequestMapping(value = "/delete/{id}")
     public String deleteCategory(@PathVariable("id") Integer id) throws Exception {
 
-        //禁止删除有文章的分类
-        int count = articleService.countArticleWithCategory(null,id);
+        //禁止删除有想法的分类
+        int count = thoughtService.countThoughtWithCategory(null,id);
         if (count == 0) {
             categoryService.deleteCategory(id);
         }

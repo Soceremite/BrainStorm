@@ -40,7 +40,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">新建</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="/admin/article/insert">文章</a></dd>
+                    <dd><a href="/admin/thought/insert">想法</a></dd>
                     <dd><a href="/admin/page/insert">页面</a></dd>
                     <dd><a href="/admin/category/insert">分类</a></dd>
                     <dd><a href="/admin/tag/insert">标签</a></dd>
@@ -69,10 +69,10 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">文章</a>
+                    <a class="" href="javascript:;">想法</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/admin/article">全部文章</a></dd>
-                        <dd><a href="/admin/article/insert">写文章</a></dd>
+                        <dd><a href="/admin/thought">全部想法</a></dd>
+                        <dd><a href="/admin/thought/insert">写想法</a></dd>
                         <dd><a href="/admin/category">全部分类</a></dd>
                         <dd><a href="/admin/tag">全部标签</a></dd>
                     </dl>

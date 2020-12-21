@@ -41,7 +41,7 @@
     <form class="layui-form"  method="post" id="myForm" action="/admin/comment/replySubmit">
         <input type="hidden" name="commentPid" value="${commentCustom.commentId}">
         <input type="hidden" name="commentPname" value="${commentCustom.commentAuthorName}">
-        <input type="hidden" name="commentArticleId" value="${commentCustom.commentArticleId}">
+        <input type="hidden" name="commentThoughtId" value="${commentCustom.commentThoughtId}">
         <input type="hidden" name="commentRole" value="1">
 
         <div class="layui-form-item layui-form-text">
