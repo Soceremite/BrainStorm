@@ -1,11 +1,11 @@
 package com.liuyadong.brainstorm.controller.Admin;
 
 
-import com.liuyadong.brainstorm.entity.Article;
+import com.liuyadong.brainstorm.entity.Thought;
 import com.liuyadong.brainstorm.entity.Comment;
 import com.liuyadong.brainstorm.entity.custom.CommentCustom;
 import com.liuyadong.brainstorm.entity.custom.CommentListVo;
-import com.liuyadong.brainstorm.service.ArticleService;
+import com.liuyadong.brainstorm.service.ThoughtService;
 import com.liuyadong.brainstorm.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class BackCommentController {
     private CommentService commentService;
 
     @Autowired
-    private ArticleService articleService;
+    private ThoughtService thoughtService;
 
     //创作者中心评论列表显示
     @RequestMapping(value = "")
@@ -75,9 +75,9 @@ public class BackCommentController {
         //添加评论
         comment.setCommentCreateTime(new Date());
         commentService.insertComment(request,comment);
-        //更新文章的评论数
-        Article article = articleService.getArticleById(null,comment.getCommentArticleId());
-        articleService.updateCommentCount(article.getArticleId());
+        //更新想法的评论数
+        Thought thought = thoughtService.getThoughtById(null,comment.getCommentThoughtId());
+        thoughtService.updateCommentCount(thought.getThoughtId());
     }
 
     //删除评论
@@ -91,9 +91,9 @@ public class BackCommentController {
         for(int i=0;i<childCommentList.size();i++) {
             commentService.deleteComment(childCommentList.get(i).getCommentId());
         }
-        //更新文章的评论数
-        Article article = articleService.getArticleById(null,comment.getCommentArticleId());
-        articleService.updateCommentCount(article.getArticleId());
+        //更新想法的评论数
+        Thought thought = thoughtService.getThoughtById(null,comment.getCommentThoughtId());
+        thoughtService.updateCommentCount(thought.getThoughtId());
     }
 
     //编辑评论页面显示
@@ -152,9 +152,9 @@ public class BackCommentController {
             commentService.updateComment(childComment);
         }
 
-        //更新文章的评论数
-        Article article = articleService.getArticleById(null,comment.getCommentArticleId());
-        articleService.updateCommentCount(article.getArticleId());
+        //更新想法的评论数
+        Thought thought = thoughtService.getThoughtById(null,comment.getCommentThoughtId());
+        thoughtService.updateCommentCount(thought.getThoughtId());
     }
     //屏蔽评论
     @RequestMapping(value = "/hide/{id}")
@@ -170,9 +170,9 @@ public class BackCommentController {
             childComment.setCommentStatus(0);
             commentService.updateComment(childComment);
         }
-        //更新文章的评论数
-        Article article = articleService.getArticleById(null,comment.getCommentArticleId());
-        articleService.updateCommentCount(article.getArticleId());
+        //更新想法的评论数
+        Thought thought = thoughtService.getThoughtById(null,comment.getCommentThoughtId());
+        thoughtService.updateCommentCount(thought.getThoughtId());
     }
 
     //回复评论页面显示
@@ -190,10 +190,10 @@ public class BackCommentController {
     //回复评论提交
     @RequestMapping(value = "/replySubmit",method = RequestMethod.POST)
     public String replyCommentSubmit(HttpServletRequest request,Comment comment) throws Exception {
-        //文章评论数+1
-        Article article = articleService.getArticleById(null,comment.getCommentArticleId());
-        article.setArticleCommentCount(article.getArticleCommentCount()+1);
-        articleService.updateArticle(article.getArticleId(),article);
+        //想法评论数+1
+        Thought thought = thoughtService.getThoughtById(null,comment.getCommentThoughtId());
+        thought.setThoughtCommentCount(thought.getThoughtCommentCount()+1);
+        thoughtService.updateThought(thought.getThoughtId(),thought);
         //添加评论
         comment.setCommentCreateTime(new Date());
         comment.setCommentStatus(1);

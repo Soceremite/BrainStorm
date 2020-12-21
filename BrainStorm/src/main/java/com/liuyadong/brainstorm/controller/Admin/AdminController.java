@@ -1,9 +1,9 @@
 package com.liuyadong.brainstorm.controller.Admin;
 
 import com.liuyadong.brainstorm.entity.User;
-import com.liuyadong.brainstorm.entity.custom.ArticleListVo;
+import com.liuyadong.brainstorm.entity.custom.ThoughtListVo;
 import com.liuyadong.brainstorm.entity.custom.CommentListVo;
-import com.liuyadong.brainstorm.service.ArticleService;
+import com.liuyadong.brainstorm.service.ThoughtService;
 import com.liuyadong.brainstorm.service.CommentService;
 import com.liuyadong.brainstorm.service.UserService;
 import com.liuyadong.brainstorm.util.Functions;
@@ -32,7 +32,7 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
-    private ArticleService articleService;
+    private ThoughtService thoughtService;
 
     @Autowired
     private CommentService commentService;
@@ -47,9 +47,9 @@ public class AdminController {
     @RequestMapping("/admin")
     public ModelAndView index() throws Exception {
         ModelAndView modelAndView = new ModelAndView();
-        //文章列表
-        List<ArticleListVo> articleCustomList = articleService.listArticle(null);
-        modelAndView.addObject("articleCustomList",articleCustomList);
+        //想法列表
+        List<ThoughtListVo> thoughtCustomList = thoughtService.listThought(null);
+        modelAndView.addObject("thoughtCustomList",thoughtCustomList);
         //评论列表
         List<CommentListVo> commentListVoList = commentService.listCommentVo(null);
         modelAndView.addObject("commentListVoList",commentListVoList);

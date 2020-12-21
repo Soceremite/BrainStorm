@@ -230,11 +230,11 @@
                     <div id="activity-widget">
                         <div id="published-posts" class="activity-block"><h3>最近发布</h3> <br>
                             <ul>
-                                <c:forEach items="${articleCustomList}" begin="0" end="4" step="1" var="a">
-                                    <li><span><fmt:formatDate value="${a.articleCustom.articlePostTime}"
+                                <c:forEach items="${thoughtCustomList}" begin="0" end="4" step="1" var="a">
+                                    <li><span><fmt:formatDate value="${a.thoughtCustom.thoughtPostTime}"
                                                               pattern="HH:mm MM月dd日"/> </span>
-                                        <a href="/article/${a.articleCustom.articleId}"
-                                           target="_blank">${a.articleCustom.articleTitle}</a>
+                                        <a href="/thought/${a.thoughtCustom.thoughtId}"
+                                           target="_blank">${a.thoughtCustom.thoughtTitle}</a>
                                     </li>
                                 </c:forEach>
 
@@ -255,7 +255,7 @@
                                                    rel="external nofollow"
                                                    class="url">${c.commentCustom.commentAuthorName}</a>
                                             </cite>发表在《<a
-                                                    href="/article/${c.commentCustom.commentArticleId}">${c.articleCustom.articleTitle}</a>》
+                                                    href="/thought/${c.commentCustom.commentThoughtId}">${c.thoughtCustom.thoughtTitle}</a>》
                                                 <c:if test="${c.commentCustom.commentStatus==0}">
                                                     <span class="approve">[待审]</span>
                                                 </c:if>
@@ -318,19 +318,19 @@
             <div id="dashboard_quick_press" class="postbox ">
                 <div class="inside">
                     <form name="post" method="post" id="insertDraftForm"
-                          class="initial-form hide-if-no-js" action="/admin/article/insertDraftSubmit">
+                          class="initial-form hide-if-no-js" action="/admin/thought/insertDraftSubmit">
 
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <input type="text" name="articleTitle" id="articleTitle" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                <input type="text" name="thoughtTitle" id="thoughtTitle" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <div class="layui-input-block">
-                                <textarea name="articleContent" placeholder="请输入内容" id="articleContent" class="layui-textarea" required></textarea>
+                                <textarea name="thoughtContent" placeholder="请输入内容" id="thoughtContent" class="layui-textarea" required></textarea>
                             </div>
                         </div>
-                        <input type="hidden" name="articleStatus" value="0">
+                        <input type="hidden" name="thoughtStatus" value="0">
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <button class="layui-btn layui-btn-small" lay-submit lay-filter="formDemo" onclick="insertDraft()">保存草稿</button>
@@ -340,16 +340,16 @@
 
                     </form>
                     <div class="drafts"><p class="view-all"><a
-                            href="/admin/article"
+                            href="/admin/thought"
                             aria-label="查看所有草稿">查看所有</a></p>
                         <h2 class="hide-if-no-js">草稿</h2>
                         <ul>
-                            <c:forEach items="${articleCustomList}" var="a">
-                                <c:if test="${a.articleCustom.articleStatus==0}">
+                            <c:forEach items="${thoughtCustomList}" var="a">
+                                <c:if test="${a.thoughtCustom.thoughtStatus==0}">
                                     <li>
                                         <div class="draft-title"><a
-                                                href="/admin/article/edit/${a.articleCustom.articleId}">${a.articleCustom.articleTitle}</a>
-                                            <time ><fmt:formatDate value="${a.articleCustom.articlePostTime}" pattern="yyyy年MM月dd日"/></time>
+                                                href="/admin/thought/edit/${a.thoughtCustom.thoughtId}">${a.thoughtCustom.thoughtTitle}</a>
+                                            <time ><fmt:formatDate value="${a.thoughtCustom.thoughtPostTime}" pattern="yyyy年MM月dd日"/></time>
                                         </div>
                                     </li>
                                 </c:if>

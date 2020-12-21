@@ -1,10 +1,10 @@
 package com.liuyadong.brainstorm.controller.Home;
 
-import com.liuyadong.brainstorm.entity.custom.ArticleListVo;
+import com.liuyadong.brainstorm.entity.custom.ThoughtListVo;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
 import com.liuyadong.brainstorm.entity.custom.PageCustom;
 import com.liuyadong.brainstorm.entity.custom.TagCustom;
-import com.liuyadong.brainstorm.service.ArticleService;
+import com.liuyadong.brainstorm.service.ThoughtService;
 import com.liuyadong.brainstorm.service.CategoryService;
 import com.liuyadong.brainstorm.service.PageService;
 import com.liuyadong.brainstorm.service.TagService;
@@ -24,7 +24,7 @@ public class PageController {
 	private PageService pageService;
 
 	@Autowired
-	private ArticleService articleService;
+	private ThoughtService thoughtService;
 
 	@Autowired
 	private CategoryService categoryService;
@@ -41,7 +41,7 @@ public class PageController {
 
 	//页面显示
 	@RequestMapping(value = "/{key}")
-	public ModelAndView ArticleDetailView(@PathVariable("key") String key) throws Exception{
+	public ModelAndView ThoughtDetailView(@PathVariable("key") String key) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		PageCustom pageCustom = pageService.getPageByKey(1,key);
 		if(pageCustom!=null) {
@@ -55,13 +55,13 @@ public class PageController {
 	}
 
 
-	//文章归档页面显示
-	@RequestMapping(value = "/articleFile")
-	public ModelAndView articleFile() throws Exception {
+	//想法归档页面显示
+	@RequestMapping(value = "/thoughtFile")
+	public ModelAndView thoughtFile() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("Home/Page/articleFile");
-		List<ArticleListVo> articleList = articleService.listArticle(1);
-		modelAndView.addObject("articleList",articleList);
+		modelAndView.setViewName("Home/Page/thoughtFile");
+		List<ThoughtListVo> thoughtList = thoughtService.listThought(1);
+		modelAndView.addObject("thoughtList",thoughtList);
 		return modelAndView;
 	}
 
@@ -70,9 +70,9 @@ public class PageController {
 	public ModelAndView siteMap() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("Home/Page/siteMap");
-		//文章显示
-		List<ArticleListVo> articleList = articleService.listArticle(1);
-		modelAndView.addObject("articleList",articleList);
+		//想法显示
+		List<ThoughtListVo> thoughtList = thoughtService.listThought(1);
+		modelAndView.addObject("thoughtList",thoughtList);
         //分类显示
         List<CategoryCustom> categoryCustomList = categoryService.listCategory(1);
         modelAndView.addObject("categoryCustomList",categoryCustomList);

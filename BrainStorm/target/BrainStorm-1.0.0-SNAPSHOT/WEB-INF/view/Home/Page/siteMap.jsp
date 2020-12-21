@@ -44,17 +44,17 @@
 </rapid:override>
 
 <rapid:override name="left">
-    <%--博客主体-左侧正文 start--%>
+    <%--头脑风暴主体-左侧正文 start--%>
     <section id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
             <div class="layui-collapse">
                 <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">文章列表</h2>
+                    <h2 class="layui-colla-title">想法列表</h2>
                     <div class="layui-colla-content layui-show">
                         <ul>
-                            <c:forEach items="${articleList}" var="a">
+                            <c:forEach items="${thoughtList}" var="a">
                                 <li style="padding: 5px">
-                                    <a href="/article/${a.articleCustom.articleId}" title="ajax实现form表单提交" target="_blank">${a.articleCustom.articleTitle}</a>
+                                    <a href="/thought/${a.thoughtCustom.thoughtId}" title="ajax实现form表单提交" target="_blank">${a.thoughtCustom.thoughtTitle}</a>
                                 </li>
                             </c:forEach>
 
@@ -88,7 +88,7 @@
                     <h2 class="layui-colla-title">标签库</h2>
                     <div class="layui-colla-content layui-show">
                         <c:forEach items="${tagCustomList}" var="t">
-                            <a href="/tag/${t.tagId}" style="font-size: ${t.articleCount/4+14}px" title="${t.articleCount}个话题" target="_blank">${t.tagName}</a>
+                            <a href="/tag/${t.tagId}" style="font-size: ${t.thoughtCount/4+14}px" title="${t.thoughtCount}个话题" target="_blank">${t.tagName}</a>
                         </c:forEach>
                     </div>
                 </div>

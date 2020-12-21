@@ -5,7 +5,7 @@
     <id column="comment_id" property="commentId" jdbcType="INTEGER" />
     <result column="comment_pid" property="commentPid" jdbcType="INTEGER" />
     <result column="comment_pname" property="commentPname" jdbcType="VARCHAR" />
-    <result column="comment_article_id" property="commentArticleId" jdbcType="INTEGER" />
+    <result column="comment_thought_id" property="commentThoughtId" jdbcType="INTEGER" />
     <result column="comment_author_name" property="commentAuthorName" jdbcType="VARCHAR" />
     <result column="comment_author_email" property="commentAuthorEmail" jdbcType="VARCHAR" />
     <result column="comment_author_url" property="commentAuthorUrl" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
     <result column="comment_status" property="commentStatus" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    comment_id, comment_pid, comment_pname, comment_article_id, comment_author_name, 
+    comment_id, comment_pid, comment_pname, comment_thought_id, comment_author_name, 
     comment_author_email, comment_author_url, comment_content, comment_agent, comment_ip, 
     comment_create_time, comment_role, comment_status
   </sql>
@@ -33,12 +33,12 @@
   </delete>
   <insert id="insert" parameterType="com.liuyadong.brainstorm.entity.Comment" >
     insert into comment (comment_id, comment_pid, comment_pname, 
-      comment_article_id, comment_author_name, comment_author_email, 
+      comment_thought_id, comment_author_name, comment_author_email, 
       comment_author_url, comment_content, comment_agent, 
       comment_ip, comment_create_time, comment_role, 
       comment_status)
     values (#{commentId,jdbcType=INTEGER}, #{commentPid,jdbcType=INTEGER}, #{commentPname,jdbcType=VARCHAR}, 
-      #{commentArticleId,jdbcType=INTEGER}, #{commentAuthorName,jdbcType=VARCHAR}, #{commentAuthorEmail,jdbcType=VARCHAR}, 
+      #{commentThoughtId,jdbcType=INTEGER}, #{commentAuthorName,jdbcType=VARCHAR}, #{commentAuthorEmail,jdbcType=VARCHAR}, 
       #{commentAuthorUrl,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR}, #{commentAgent,jdbcType=VARCHAR}, 
       #{commentIp,jdbcType=VARCHAR}, #{commentCreateTime,jdbcType=TIMESTAMP}, #{commentRole,jdbcType=INTEGER}, 
       #{commentStatus,jdbcType=INTEGER})
@@ -55,8 +55,8 @@
       <if test="commentPname != null" >
         comment_pname,
       </if>
-      <if test="commentArticleId != null" >
-        comment_article_id,
+      <if test="commentThoughtId != null" >
+        comment_thought_id,
       </if>
       <if test="commentAuthorName != null" >
         comment_author_name,
@@ -96,8 +96,8 @@
       <if test="commentPname != null" >
         #{commentPname,jdbcType=VARCHAR},
       </if>
-      <if test="commentArticleId != null" >
-        #{commentArticleId,jdbcType=INTEGER},
+      <if test="commentThoughtId != null" >
+        #{commentThoughtId,jdbcType=INTEGER},
       </if>
       <if test="commentAuthorName != null" >
         #{commentAuthorName,jdbcType=VARCHAR},
@@ -137,8 +137,8 @@
       <if test="commentPname != null" >
         comment_pname = #{commentPname,jdbcType=VARCHAR},
       </if>
-      <if test="commentArticleId != null" >
-        comment_article_id = #{commentArticleId,jdbcType=INTEGER},
+      <if test="commentThoughtId != null" >
+        comment_thought_id = #{commentThoughtId,jdbcType=INTEGER},
       </if>
       <if test="commentAuthorName != null" >
         comment_author_name = #{commentAuthorName,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
     update comment
     set comment_pid = #{commentPid,jdbcType=INTEGER},
       comment_pname = #{commentPname,jdbcType=VARCHAR},
-      comment_article_id = #{commentArticleId,jdbcType=INTEGER},
+      comment_thought_id = #{commentThoughtId,jdbcType=INTEGER},
       comment_author_name = #{commentAuthorName,jdbcType=VARCHAR},
       comment_author_email = #{commentAuthorEmail,jdbcType=VARCHAR},
       comment_author_url = #{commentAuthorUrl,jdbcType=VARCHAR},

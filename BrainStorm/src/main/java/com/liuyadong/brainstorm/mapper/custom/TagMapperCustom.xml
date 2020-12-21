@@ -23,18 +23,18 @@
     </select>
 
 
-   <select id="listArticleWithTagByPage" resultType="com.liuyadong.brainstorm.entity.custom.ArticleCustom">
+   <select id="listThoughtWithTagByPage" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
         SELECT
         *
-        FROM `article`
+        FROM `thought`
        <where>
            <if test="status!=null">
-               article_status=#{status} AND
+               thought_status=#{status} AND
            </if>
-           article.article_tag_ids = #{tagId} OR
-           article.article_tag_ids LIKE "${tagId},%" OR
-           article.article_tag_ids LIKE "%,${tagId},%" OR
-           article.article_tag_ids LIKE "%,${tagId}"
+           thought.thought_tag_ids = #{tagId} OR
+           thought.thought_tag_ids LIKE "${tagId},%" OR
+           thought.thought_tag_ids LIKE "%,${tagId},%" OR
+           thought.thought_tag_ids LIKE "%,${tagId}"
            limit #{startPos},#{pageSize}
        </where>
 

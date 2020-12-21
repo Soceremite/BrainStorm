@@ -2,7 +2,7 @@
 绿色：#009688
 蓝色：#009688
 */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, thought, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     border: 0;
     font-family: inherit;
     font-size: 100%;
@@ -41,7 +41,7 @@ textarea {
     background: #f1f1f1;
 }
 
-article,
+thought,
 aside,
 details,
 figcaption,
@@ -1453,7 +1453,7 @@ a, button, input {
     background: #fc5a20;
 }
 
-/** 文章信息 **/
+/** 想法信息 **/
 .entry-meta {
     position: absolute;
     bottom: 14px;
@@ -2057,7 +2057,7 @@ img.alignleft {
     color: #f85d00 !important;
     margin: 0 10px 0 0;
 }
-/** 文章信息 **/
+/** 想法信息 **/
 .single-footer {
 }
 
@@ -5059,7 +5059,7 @@ li.comments-anchor {
     }
 }
 
-/** 文章商品 **/
+/** 想法商品 **/
 .wplist-item {
     margin: 0 0 -1px 0;
     padding: 10px 10px 15px 10px;
@@ -6210,7 +6210,7 @@ li.search-inf {
 /** CMS **/
 
 
-/*!** 最新文章列表 **!*/
+/*!** 最新想法列表 **!*/
 
 /*.cms-new-title {*/
     /*float: left;*/

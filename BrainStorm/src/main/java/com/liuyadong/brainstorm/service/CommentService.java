@@ -13,8 +13,8 @@ public interface CommentService {
 	//添加评论
 	public void insertComment(HttpServletRequest request, Comment comment) throws Exception;
 	
-	//根据文章id获取评论列表
-	public List<CommentCustom> listCommentByArticleId(Integer status,Integer articleId);
+	//根据想法id获取评论列表
+	public List<CommentCustom> listCommentByThoughtId(Integer status,Integer thoughtId);
 
 	//根据id获取评论
 	public CommentCustom getCommentById(Integer id) throws Exception;

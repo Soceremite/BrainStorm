@@ -63,13 +63,13 @@
     </select>
 
 
-    <select id="countArticleByUser" parameterType="Integer" resultType="Integer">
+    <select id="countThoughtByUser" parameterType="Integer" resultType="Integer">
         SELECT
         COUNT(*)
         FROM
-        `article`
+        `thought`
         WHERE
-        article_user_id=#{id}
+        thought_user_id=#{id}
     </select>
 
 

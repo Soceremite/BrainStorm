@@ -2,12 +2,12 @@ package com.liuyadong.brainstorm.service.impl;
 
 import com.liuyadong.brainstorm.mapper.CategoryMapper;
 import com.liuyadong.brainstorm.mapper.TagMapper;
-import com.liuyadong.brainstorm.mapper.custom.ArticleMapperCustom;
+import com.liuyadong.brainstorm.mapper.custom.ThoughtMapperCustom;
 import com.liuyadong.brainstorm.mapper.custom.CategoryMapperCustom;
 import com.liuyadong.brainstorm.mapper.custom.TagMapperCustom;
 import com.liuyadong.brainstorm.entity.Tag;
-import com.liuyadong.brainstorm.entity.custom.ArticleCustom;
-import com.liuyadong.brainstorm.entity.custom.ArticleListVo;
+import com.liuyadong.brainstorm.entity.custom.ThoughtCustom;
+import com.liuyadong.brainstorm.entity.custom.ThoughtListVo;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
 import com.liuyadong.brainstorm.entity.custom.TagCustom;
 import com.liuyadong.brainstorm.service.TagService;
@@ -33,7 +33,7 @@ public class TagServiceImpl implements TagService {
 	private TagMapperCustom tagMapperCustom;
 
 	@Autowired
-	private ArticleMapperCustom articleMapperCustom;
+	private ThoughtMapperCustom thoughtMapperCustom;
 
 	//获得标签总数
 	@Override
@@ -48,18 +48,18 @@ public class TagServiceImpl implements TagService {
 		List<TagCustom> tagList = tagMapperCustom.listTag(status);
 		for(int i=0;i<tagList.size();i++) {
 			Integer tagId = tagList.get(i).getTagId();
-			int count = articleMapperCustom.countArticleByTag(status,tagId);
-			tagList.get(i).setArticleCount(count);
+			int count = thoughtMapperCustom.countThoughtByTag(status,tagId);
+			tagList.get(i).setThoughtCount(count);
 		}
 		return tagList;
 	}
 
 	
-	//获得含有该标签的文章列表
+	//获得含有该标签的想法列表
 	@Override
-	public List<ArticleListVo> getArticleListByPage(Integer status,Integer pageNow, Integer pageSize,Integer tagId) throws Exception {
-		List<ArticleListVo> articleListVoList = new ArrayList<ArticleListVo>();
-		List<ArticleCustom> articleCustomList = new ArrayList<ArticleCustom>();
+	public List<ThoughtListVo> getThoughtListByPage(Integer status,Integer pageNow, Integer pageSize,Integer tagId) throws Exception {
+		List<ThoughtListVo> thoughtListVoList = new ArrayList<ThoughtListVo>();
+		List<ThoughtCustom> thoughtCustomList = new ArrayList<ThoughtCustom>();
 		
 		
 		//获得该标签的具体信息
@@ -71,24 +71,24 @@ public class TagServiceImpl implements TagService {
 		//分页显示
 		Page page = null;
 
-		int totalCount = articleMapperCustom.countArticleByTag(status,tagId);
+		int totalCount = thoughtMapperCustom.countThoughtByTag(status,tagId);
 		if (pageNow != null) {
 			page = new Page(totalCount, pageNow,pageSize);
-			articleCustomList = tagMapperCustom.listArticleWithTagByPage(status,tagId,page.getStartPos(), page.getPageSize());
+			thoughtCustomList = tagMapperCustom.listThoughtWithTagByPage(status,tagId,page.getStartPos(), page.getPageSize());
 		} else {
 			page = new Page(totalCount, 1,pageSize);
-			articleCustomList = tagMapperCustom.listArticleWithTagByPage(status,tagId,page.getStartPos(), page.getPageSize());
+			thoughtCustomList = tagMapperCustom.listThoughtWithTagByPage(status,tagId,page.getStartPos(), page.getPageSize());
 		}
 		
-		for(int i=0;i<articleCustomList.size();i++) {
-			ArticleListVo articleListVo = new ArticleListVo();
-			//1、将文章装入 articleListVo
-			ArticleCustom articleCustom = articleCustomList.get(i);
-			articleListVo.setArticleCustom(articleCustom);
-			//2、将分类信息装到 articleListVoList 中
+		for(int i=0;i<thoughtCustomList.size();i++) {
+			ThoughtListVo thoughtListVo = new ThoughtListVo();
+			//1、将想法装入 thoughtListVo
+			ThoughtCustom thoughtCustom = thoughtCustomList.get(i);
+			thoughtListVo.setThoughtCustom(thoughtCustom);
+			//2、将分类信息装到 thoughtListVoList 中
 			List<CategoryCustom> categoryCustomList = new ArrayList<CategoryCustom>();
-			Integer cate =articleCustomList.get(i).getArticleParentCategoryId();
-			Integer cate2 =articleCustomList.get(i).getArticleChildCategoryId();
+			Integer cate =thoughtCustomList.get(i).getThoughtParentCategoryId();
+			Integer cate2 =thoughtCustomList.get(i).getThoughtChildCategoryId();
 			CategoryCustom categoryCustom = categoryMapperCustom.getCategoryById(status,cate);
 			CategoryCustom categoryCustom2 = categoryMapperCustom.getCategoryById(status,cate2);
 			if(categoryCustom!=null) {
@@ -97,23 +97,23 @@ public class TagServiceImpl implements TagService {
 			if(categoryCustom2!=null) {
 				categoryCustomList.add(categoryCustom2);
 			}
-			articleListVo.setCategoryCustomList(categoryCustomList);
+			thoughtListVo.setCategoryCustomList(categoryCustomList);
 			
-			articleListVoList.add(articleListVo);
+			thoughtListVoList.add(thoughtListVo);
 		}
-		//确保该标签有文章，防止空指针
+		//确保该标签有想法，防止空指针
 		if(totalCount!=0) {
-			//3、将Page存储在 articleListVoList 第一个元素中
-			articleListVoList.get(0).setPage(page);
+			//3、将Page存储在 thoughtListVoList 第一个元素中
+			thoughtListVoList.get(0).setPage(page);
 
-			//4、将标签信息 装入  articleListVoList 第一个元素中
+			//4、将标签信息 装入  thoughtListVoList 第一个元素中
 			List<TagCustom> tagCustomList = new ArrayList<TagCustom>();
 			TagCustom tagCustom = new TagCustom();
 			BeanUtils.copyProperties(tag, tagCustom);
 			tagCustomList.add(tagCustom);
-			articleListVoList.get(0).setTagCustomList(tagCustomList);
+			thoughtListVoList.get(0).setTagCustomList(tagCustomList);
 		}
-		return articleListVoList;
+		return thoughtListVoList;
 	}
 
     @Override

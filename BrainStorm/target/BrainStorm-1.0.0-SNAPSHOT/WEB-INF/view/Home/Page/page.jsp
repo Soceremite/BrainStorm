@@ -32,7 +32,7 @@
 
 
 <rapid:override name="left">
-    <%--博客主体-左侧文章正文 start--%>
+    <%--头脑风暴主体-左侧想法正文 start--%>
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
             <article class="post" >
@@ -69,14 +69,14 @@
 
                     <div class="clear"></div>
                 </div><!-- .entry-content -->
-            </article><!-- #post -->
+            </thought><!-- #post -->
 
 
 
         </main>
         <!-- .site-main -->
     </div>
-    <%--博客主体-左侧文章正文end--%>
+    <%--头脑风暴主体-左侧想法正文end--%>
 </rapid:override>
 
 

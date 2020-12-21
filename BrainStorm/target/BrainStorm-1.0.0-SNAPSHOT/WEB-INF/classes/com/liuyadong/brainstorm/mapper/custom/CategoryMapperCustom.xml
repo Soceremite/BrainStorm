@@ -43,17 +43,17 @@
 
 
 
-    <!--获得含有该分类的文章列表-->
-    <select id="listArticleWithCategoryByPage" resultType="com.liuyadong.brainstorm.entity.custom.ArticleCustom">
-        SELECT * FROM `article`
+    <!--获得含有该分类的想法列表-->
+    <select id="listThoughtWithCategoryByPage" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
+        SELECT * FROM `thought`
         <where>
             <if test="status!=null">
-                article_status=#{status} AND
+                thought_status=#{status} AND
             </if>
-             article_parent_category_id=#{cateId} OR
-             article_child_category_id=#{cateId}
+             thought_parent_category_id=#{cateId} OR
+             thought_child_category_id=#{cateId}
         </where>
-        ORDER BY article_id DESC
+        ORDER BY thought_id DESC
         limit #{startPos},#{pageSize}
     </select>
 

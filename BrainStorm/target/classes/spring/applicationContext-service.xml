@@ -16,8 +16,8 @@
     <!-- 用户管理的service -->
     <bean id="userService" class="com.liuyadong.brainstorm.service.impl.UserServiceImpl"/>
 
-    <!-- 文章管理的service -->
-    <bean id="articleService" class="com.liuyadong.brainstorm.service.impl.ArticleServiceImpl"/>
+    <!-- 想法管理的service -->
+    <bean id="thoughtService" class="com.liuyadong.brainstorm.service.impl.ThoughtServiceImpl"/>
 
     <!-- 分类管理的service -->
     <bean id="categoryService" class="com.liuyadong.brainstorm.service.impl.CategoryServiceImpl"/>

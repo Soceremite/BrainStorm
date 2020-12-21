@@ -6,12 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%--
-    博客页脚部分
+    头脑风暴页脚部分
     包括：页脚部分
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest//autoload.js"></script>
 <%--页脚 start--%>
 <footer id="colophon" class="site-footer" role="contentinfo">
     <div class="site-info">

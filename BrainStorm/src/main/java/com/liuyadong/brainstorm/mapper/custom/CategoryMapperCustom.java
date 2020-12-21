@@ -3,7 +3,7 @@ package com.liuyadong.brainstorm.mapper.custom;
 
 
 import com.liuyadong.brainstorm.entity.Category;
-import com.liuyadong.brainstorm.entity.custom.ArticleCustom;
+import com.liuyadong.brainstorm.entity.custom.ThoughtCustom;
 import com.liuyadong.brainstorm.entity.custom.CategoryCustom;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -24,8 +24,8 @@ public interface CategoryMapperCustom {
 	//根据分类id获得分类信息
 	public CategoryCustom getCategoryById(@Param(value="status") Integer status,@Param(value="id")Integer id) throws Exception;
 
-	//获得含有该分类的文章列表
-	public List<ArticleCustom> listArticleWithCategoryByPage(
+	//获得含有该分类的想法列表
+	public List<ThoughtCustom> listThoughtWithCategoryByPage(
 			@Param(value="status") Integer status,
 			@Param(value = "cateId") Integer cateId
 			,@Param(value="startPos") Integer startPos

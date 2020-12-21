@@ -13,7 +13,6 @@
 <%@ taglib uri="/WEB-INF/myTag.tld" prefix="lyz" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 
-
     <rapid:override name="breadcrumb">
         <nav class="breadcrumb">
             <div class="bull"><i class="fa fa-volume-up"></i></div>
@@ -35,16 +34,16 @@
         <div id="primary" class="content-area">
 
             <main id="main" class="site-main" role="main">
-                <c:forEach items="${articleListVoList}" var="a">
+                <c:forEach items="${thoughtListVoList}" var="a">
 
-                    <article  class="post type-post">
+                    <thought  class="post type-post">
 
                         <figure class="thumbnail">
-                            <a href="/article/${a.articleCustom.articleId}">
+                            <a href="/thought/${a.thoughtCustom.thoughtId}">
                                 <img width="280" height="210"
-                                     src="/img/thumbnail/random/img_${a.articleCustom.articleId%400}.jpg"
+                                     src="/img/thumbnail/random/img_${a.thoughtCustom.thoughtId%400}.jpg"
                                      class="attachment-content size-content wp-post-image"
-                                     alt="${a.articleCustom.articleTitle}">
+                                     alt="${a.thoughtCustom.thoughtTitle}">
                             </a>
                             <span class="cat">
                                 <a href="/category/${a.categoryCustomList[a.categoryCustomList.size()-1].categoryId}">
@@ -55,27 +54,27 @@
 
                         <header class="entry-header">
                             <h2 class="entry-title">
-                                <a href="/article/${a.articleCustom.articleId}"
+                                <a href="/thought/${a.thoughtCustom.thoughtId}"
                                    rel="bookmark">
-                                        ${a.articleCustom.articleTitle}
+                                        ${a.thoughtCustom.thoughtTitle}
                                 </a>
                             </h2>
                         </header>
 
                         <div class="entry-content">
                             <div class="archive-content">
-                                <lyz:htmlFilter>${a.articleCustom.articleContent}</lyz:htmlFilter>......
+                                <lyz:htmlFilter>${a.thoughtCustom.thoughtContent}</lyz:htmlFilter>......
                             </div>
                             <span class="title-l"></span>
                             <span class="new-icon">
                                     <c:choose>
-                                        <c:when test="${a.articleCustom.articleStatus==2}">
+                                        <c:when test="${a.thoughtCustom.thoughtStatus==2}">
                                             <i class="fa fa-bookmark-o"></i>
                                         </c:when>
                                         <c:otherwise>
                                             <jsp:useBean id="nowDate" class="java.util.Date"/>
                                             <c:set var="interval"
-                                                   value="${nowDate.time - a.articleCustom.articlePostTime.time}"/><%--时间差毫秒数--%>
+                                                   value="${nowDate.time - a.thoughtCustom.thoughtPostTime.time}"/><%--时间差毫秒数--%>
                                             <fmt:formatNumber value="${interval/1000/60/60/24}" pattern="#0"
                                                               var="days"/>
                                             <c:if test="${days <= 7}">NEW</c:if>
@@ -86,22 +85,22 @@
                                 </span>
                             <span class="entry-meta">
                                     <span class="date">
-                                        <fmt:formatDate value="${a.articleCustom.articlePostTime}" pattern="yyyy年MM月dd日"/>
+                                        <fmt:formatDate value="${a.thoughtCustom.thoughtPostTime}" pattern="yyyy年MM月dd日"/>
                                     &nbsp;&nbsp;
                                     </span>
                                     <span class="views">
                                         <i class="fa fa-eye"></i>
-                                            ${a.articleCustom.articleViewCount} views
+                                            ${a.thoughtCustom.thoughtViewCount} views
                                     </span>
                                     <span class="comment">&nbsp;&nbsp;
-                                        <a href="/article/${a.articleCustom.articleId}#comments" rel="external nofollow">
+                                        <a href="/thought/${a.thoughtCustom.thoughtId}#comments" rel="external nofollow">
                                           <i class="fa fa-comment-o"></i>
                                             <c:choose>
-                                                <c:when test="${a.articleCustom.articleCommentCount==0}">
+                                                <c:when test="${a.thoughtCustom.thoughtCommentCount==0}">
                                                     发表评论
                                                 </c:when>
                                                 <c:otherwise>
-                                                    ${a.articleCustom.articleCommentCount}
+                                                    ${a.thoughtCustom.thoughtCommentCount}
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -112,43 +111,43 @@
                         </div><!-- .entry-content -->
 
                         <span class="entry-more">
-                                <a href="/article/${a.articleCustom.articleId}"
+                                <a href="/thought/${a.thoughtCustom.thoughtId}"
                                    rel="bookmark">
                                     阅读全文
                                 </a>
                             </span>
-                    </article>
+                    </thought>
                 </c:forEach>
             </main>
 
-            <c:if test="${articleListVoList[0].page.totalPageCount>1}">
+            <c:if test="${thoughtListVoList[0].page.totalPageCount>1}">
             <nav class="navigation pagination" role="navigation">
                 <div class="nav-links">
                     <c:choose>
-                        <c:when test="${articleListVoList[0].page.totalPageCount <= 3 }">
+                        <c:when test="${thoughtListVoList[0].page.totalPageCount <= 3 }">
                             <c:set var="begin" value="1"/>
-                            <c:set var="end" value="${articleListVoList[0].page.totalPageCount }"/>
+                            <c:set var="end" value="${thoughtListVoList[0].page.totalPageCount }"/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="begin" value="${articleListVoList[0].page.pageNow-1 }"/>
-                            <c:set var="end" value="${articleListVoList[0].page.pageNow + 2}"/>
+                            <c:set var="begin" value="${thoughtListVoList[0].page.pageNow-1 }"/>
+                            <c:set var="end" value="${thoughtListVoList[0].page.pageNow + 2}"/>
                             <c:if test="${begin < 2 }">
                                 <c:set var="begin" value="1"/>
                                 <c:set var="end" value="3"/>
                             </c:if>
-                            <c:if test="${end > articleListVoList[0].page.totalPageCount }">
-                                <c:set var="begin" value="${articleListVoList[0].page.totalPageCount-2 }"/>
-                                <c:set var="end" value="${articleListVoList[0].page.totalPageCount }"/>
+                            <c:if test="${end > thoughtListVoList[0].page.totalPageCount }">
+                                <c:set var="begin" value="${thoughtListVoList[0].page.totalPageCount-2 }"/>
+                                <c:set var="end" value="${thoughtListVoList[0].page.totalPageCount }"/>
                             </c:if>
                         </c:otherwise>
                     </c:choose>
                         <%--上一页 --%>
                     <c:choose>
-                        <c:when test="${articleListVoList[0].page.pageNow eq 1 }">
+                        <c:when test="${thoughtListVoList[0].page.pageNow eq 1 }">
                             <%--当前页为第一页，隐藏上一页按钮--%>
                         </c:when>
                         <c:otherwise>
-                            <a class="page-numbers" href="/p/${articleListVoList[0].page.pageNow-1}" >
+                            <a class="page-numbers" href="/p/${thoughtListVoList[0].page.pageNow-1}" >
                                 <span class="fa fa-angle-left"></span>
                             </a>
                         </c:otherwise>
@@ -164,7 +163,7 @@
                         <%--打印 页码--%>
                     <c:forEach begin="${begin }" end="${end }" var="i">
                         <c:choose>
-                            <c:when test="${i eq articleListVoList[0].page.pageNow }">
+                            <c:when test="${i eq thoughtListVoList[0].page.pageNow }">
                                 <a class="page-numbers current" >${i}</a>
                             </c:when>
                             <c:otherwise>
@@ -173,22 +172,22 @@
                         </c:choose>
                     </c:forEach>
                         <%-- 显示点点点 --%>
-                    <c:if test="${end < articleListVoList[0].page.totalPageCount-1 }">
+                    <c:if test="${end < thoughtListVoList[0].page.totalPageCount-1 }">
                         <span class="page-numbers dots">…</span>
                     </c:if>
                         <%-- 显示最后一页的数字 --%>
-                    <c:if test="${end < articleListVoList[0].page.totalPageCount }">
-                        <a href="/p/${articleListVoList[0].page.totalPageCount}">
-                                ${articleListVoList[0].page.totalPageCount}
+                    <c:if test="${end < thoughtListVoList[0].page.totalPageCount }">
+                        <a href="/p/${thoughtListVoList[0].page.totalPageCount}">
+                                ${thoughtListVoList[0].page.totalPageCount}
                         </a>
                     </c:if>
                         <%--下一页 --%>
                     <c:choose>
-                        <c:when test="${articleListVoList[0].page.pageNow eq articleListVoList[0].page.totalPageCount }">
+                        <c:when test="${thoughtListVoList[0].page.pageNow eq thoughtListVoList[0].page.totalPageCount }">
                             <%--到了尾页隐藏，下一页按钮--%>
                         </c:when>
                         <c:otherwise>
-                            <a class="page-numbers" href="/p/${articleListVoList[0].page.pageNow+1}">
+                            <a class="page-numbers" href="/p/${thoughtListVoList[0].page.pageNow+1}">
                                 <span class="fa fa-angle-right"></span>
                             </a>
                         </c:otherwise>
