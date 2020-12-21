@@ -125,8 +125,8 @@
             //自定义验证规则
             form.verify({
                 title: function (value) {
-                    if (value.length < 5) {
-                        return '标题至少得5个字符啊';
+                    if (value.length < 1) {
+                        return '标题至少得1个字符啊';
                     }
                 }
                 , pass: [/(.+){6,12}$/, '密码必须6到12位']

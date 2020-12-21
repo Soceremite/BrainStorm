@@ -19,7 +19,7 @@
     <%--关于本站 start--%>
     <aside class="widget about">
         <h3 class="widget-title">
-            <i class="fa fa-bars"></i>关于本站
+            <i class="fa fa-bars"></i>名言警句
         </h3>
         <div id="feed_widget">
             <div class="feed-about">

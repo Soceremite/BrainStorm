@@ -12,7 +12,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="/WEB-INF/myTag.tld" prefix="lyz" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
-
 <%--<rapid:override name="description">--%>
 <%--</rapid:override>--%>
 
@@ -80,7 +79,7 @@
                                     <span class="like">
                                         <a href="javascript:;" data-action="ding" data-id="1" title="点赞"
                                            class="favorite" onclick="increaseLikeCount()">
-                                            <i class="fa fa-thumbs-up"></i>赞
+                                            <i class="fa fa-thumbs-up"></i>点赞
                                             <i class="count"
                                                id="count-${thoughtDetailVo.thoughtCustom.thoughtId}">${thoughtDetailVo.thoughtCustom.thoughtLikeCount}</i>
                                         </a>
@@ -164,7 +163,7 @@
 
                     <div class="clear"></div>
                 </div><!-- .entry-content -->
-            </thought><!-- #post -->
+            </article><!-- #post -->
 
                 <%--所属标签 start--%>
             <div class="single-tag">
