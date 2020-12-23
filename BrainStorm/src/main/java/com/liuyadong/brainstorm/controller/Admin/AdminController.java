@@ -64,6 +64,41 @@ public class AdminController {
         modelAndView.setViewName("/Admin/index");
         return modelAndView;
     }
+    //注册页面显示
+    @RequestMapping(value = "/signup")
+    public ModelAndView insertUserView() throws Exception {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/Admin/signup");
+        return modelAndView;
+    }
+
+
+    //注册页面添加用户页面提交
+    @RequestMapping(value = "/signupSubmit",method = RequestMethod.POST)
+    public String signupsubmitSubmit(User user) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        User user2 = userService.getUserByName(user.getUserName());
+        User user3 = userService.getUserByEmail(user.getUserEmail());
+        if(user2!=null)
+        {
+            map.put("code",0);
+            map.put("msg","用户名已经存在！");
+        }
+        else if(user3!=null)
+        {
+            map.put("code",0);
+            map.put("msg","该邮箱已经注册！");
+        }
+        else{
+            user.setUserRegisterTime(new Date());
+            user.setUserStatus(1);
+            user.setUserAvatar("/uploads/2020/12/touxiang.jpg");
+            user.setUserNickname("新用户");
+            userService.insertUser(user);
+            return "redirect:/login";
+        }
+        return "redirect:/signup";
+    }
 
     //登录页面显示
     @RequestMapping("/login")
@@ -72,7 +107,6 @@ public class AdminController {
         modelAndView.setViewName("/Admin/login");
         return modelAndView;
     }
-
     //登录验证
     @RequestMapping(value = "/loginVerify",method = RequestMethod.POST)
     @ResponseBody
