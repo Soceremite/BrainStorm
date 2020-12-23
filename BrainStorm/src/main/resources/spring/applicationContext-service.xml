@@ -35,9 +35,6 @@
     <!--评论管理的service-->
     <bean id="commentService" class="com.liuyadong.brainstorm.service.impl.CommentServiceImpl"/>
 
-    <!--评论管理的service-->
-    <bean id="noticeService" class="com.liuyadong.brainstorm.service.impl.NoticeServiceImpl"/>
-
     <!--菜单管理的service-->
     <bean id="menuService" class="com.liuyadong.brainstorm.service.impl.MenuServiceImpl"/>
 
