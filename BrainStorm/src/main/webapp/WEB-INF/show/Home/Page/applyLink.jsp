@@ -102,7 +102,7 @@
 
                     <div class="clear"></div>
                 </div><!-- .entry-content -->
-            </thought><!-- #post -->
+            </article><!-- #post -->
 
 
 
