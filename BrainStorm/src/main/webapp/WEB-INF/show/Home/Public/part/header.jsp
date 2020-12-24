@@ -30,6 +30,9 @@
                     <c:when test="${sessionScope.user==null}">
                         <a href="/signup">注册</a>
                     </c:when>
+                    <c:otherwise>
+                        <a href="/admin/logout">退出</a>
+                    </c:otherwise>
                 </c:choose>
             </div>
             <div class="menu-topmenu-container">
@@ -56,9 +59,10 @@
                 <span class="nav-search">
                     <i class="fa fa-search"></i>
                 </span>
-            <div class="logo-site"><h1 class="site-title">
-                <a href="/" title="${options.optionSiteTitle}">${options.optionSiteTitle}</a>
-            </h1>
+            <div class="logo-site">
+                <h1 class="site-title">
+                    <a href="/" title="${options.optionSiteTitle}">${options.optionSiteTitle}</a>
+                </h1>
                 <p class="site-description">${options.optionSiteDescrption}</p>
             </div><!-- .logo-site -->
             <div id="site-nav-wrap">

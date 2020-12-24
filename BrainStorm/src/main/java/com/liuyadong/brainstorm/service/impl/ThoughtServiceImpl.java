@@ -375,20 +375,6 @@ public class ThoughtServiceImpl implements ThoughtService {
 
 	}
 	
-	//相似想法获取
-	@Override
-	public List<ThoughtCustom> listThoughtWithSameCategory(Integer status,Integer parentCategoryId,Integer childCategoryId, Integer limit) throws Exception {
-		List<ThoughtCustom> similarThoughtList = thoughtMapperCustom.listThoughtWithSameCategory(status,parentCategoryId,childCategoryId,limit);
-		return similarThoughtList;
-	}
-	
-	
-	//访问量从多到少的想法获取
-	@Override
-	public List<ThoughtCustom> listThoughtByViewCount(Integer status,Integer limit) throws Exception {
-		List<ThoughtCustom> mostViewThoughtList = thoughtMapperCustom.listThoughtByViewCount(status,limit);
-		return mostViewThoughtList;
-	}
 	
 	//获取下一篇想法
 	@Override
@@ -404,19 +390,7 @@ public class ThoughtServiceImpl implements ThoughtService {
 		return thoughtCustom;
 	}
 	
-	//获得随机想法
-	@Override
-	public List<ThoughtCustom> listRandomThought(Integer status,Integer limit) throws Exception {
-		List<ThoughtCustom> thoughtCustomsList = thoughtMapperCustom.listRandomThought(status,limit);
-		return thoughtCustomsList;
-	}
 	
-	//获得热评想法列表
-	@Override
-	public List<ThoughtCustom> listThoughtByCommentCount(Integer status,Integer limit) throws Exception {
-		List<ThoughtCustom> thoughtCustomsList = thoughtMapperCustom.listThoughtByCommentCount(status,limit);
-		return thoughtCustomsList;
-	}
 
 
     //添加想法

@@ -44,24 +44,12 @@ public interface ThoughtService {
 	
 	//想法查询分页显示
 	public List<ThoughtSearchVo> listSearchResultByPage(Integer status,HttpServletRequest request, Model model, Integer pageNow, Integer pageSize, String s) throws Exception;
- 
-	//获得相关想法
-	public List<ThoughtCustom> listThoughtWithSameCategory(Integer status,Integer parentCategoryId,Integer childCategoryId, Integer limit) throws Exception;
-	
-	//获取访问量较多的想法
-	public List<ThoughtCustom> listThoughtByViewCount(Integer status,Integer limit) throws Exception;
-	
+
 	//获得上一篇想法
 	public ThoughtCustom getAfterThought(Integer status,Integer id) throws Exception;
 	
 	//获得下一篇想法
 	public ThoughtCustom getPreThought(Integer status,Integer id) throws Exception;
-	
-	//获得随机想法
-	public List<ThoughtCustom> listRandomThought(Integer status,Integer limit) throws  Exception;
-	
-	//获得评论数较多的想法
-	public List<ThoughtCustom> listThoughtByCommentCount(Integer status,Integer limit) throws Exception;
 
 	//添加想法
 	public void insertThought(Thought thought) throws Exception;

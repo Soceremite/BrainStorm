@@ -11,7 +11,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="/WEB-INF/myTag.tld" prefix="lyz" %>
+<%@ taglib uri="/WEB-INF/myTag.tld" prefix="liu" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 
 <rapid:override name="description">
@@ -69,7 +69,7 @@
 
                                             <figure class="thumbnail">
                                                 <a href="/thought/${a.thoughtCustom.thoughtId}">
-                                                    <img width="280" height="210"
+                                                    <img id="RandomPic" width="280" height="210"
                                                          src="/img/thumbnail/random/img_${a.thoughtCustom.thoughtId%400}.jpg"
                                                          class="attachment-content size-content wp-post-image"
                                                          alt="${a.thoughtCustom.thoughtTitle}">
@@ -92,7 +92,7 @@
 
                                             <div class="entry-content">
                                                 <div class="archive-content">
-                                                    <lyz:htmlFilter>${a.thoughtCustom.thoughtContent}</lyz:htmlFilter>......
+                                                    <liu:htmlFilter>${a.thoughtCustom.thoughtContent}</liu:htmlFilter>......
                                                 </div>
                                                 <span class="title-l"></span>
                                                 <span class="new-icon">
@@ -106,7 +106,7 @@
                                                    value="${nowDate.time - a.thoughtCustom.thoughtPostTime.time}"/><%--时间差毫秒数--%>
                                             <fmt:formatNumber value="${interval/1000/60/60/24}" pattern="#0"
                                                               var="days"/><%--取天数整数--%>
-                                            <c:if test="${days <= 7}">NEW</c:if>
+                                            <c:if test="${days <= 3}">新</c:if>
                                         </c:otherwise>
                                     </c:choose>
 
@@ -119,7 +119,7 @@
                                     </span>
                                     <span class="views">
                                         <i class="fa fa-eye"></i>
-                                            ${a.thoughtCustom.thoughtViewCount} views
+                                            ${a.thoughtCustom.thoughtViewCount} 浏览
                                     </span>
                                     <span class="comment">&nbsp;&nbsp;
                                         <a href="/thought/${a.thoughtCustom.thoughtId}#comments"
@@ -127,7 +127,7 @@
                                           <i class="fa fa-comment-o"></i>
                                             <c:choose>
                                                 <c:when test="${a.thoughtCustom.thoughtCommentCount==0}">
-                                                    发表评论
+                                                    评论
                                                 </c:when>
                                                 <c:otherwise>
                                                     ${a.thoughtCustom.thoughtCommentCount}
@@ -137,13 +137,7 @@
                                     </span>
                                 </span>
                                                 <div class="clear"></div>
-                                            </div><!-- .entry-content -->
-
-                                            <span class="entry-more">
-                                            <a href="/thought/${a.thoughtCustom.thoughtId}"
-                                               rel="bookmark">阅读全文
-                                            </a>
-                                        </span>
+                                            </div>
                                         </article>
                                     </c:forEach>
                                     <%--想法列表-end--%>

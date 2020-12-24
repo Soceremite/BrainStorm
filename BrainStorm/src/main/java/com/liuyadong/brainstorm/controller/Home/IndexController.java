@@ -23,7 +23,7 @@ public class IndexController {
 	public ModelAndView IndexView() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		//想法列表
-		int pageSize = 10;
+		int pageSize = 3;
 		List<ThoughtListVo> thoughtListVoList = thoughtService.listThoughtByPage(1,null,pageSize);
 		modelAndView.addObject("thoughtListVoList",thoughtListVoList);
 
@@ -37,7 +37,7 @@ public class IndexController {
 	public @ResponseBody  ModelAndView ThoughtListByPageView(@PathVariable("pageNow") Integer pageNow) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		//设置每页显示的数量
-		int pageSize = 10;
+		int pageSize = 3;
 		List<ThoughtListVo> thoughtListVoList = thoughtService.listThoughtByPage(1,pageNow,pageSize);
 		modelAndView.addObject("thoughtListVoList",thoughtListVoList);
 		modelAndView.setViewName("Home/index");

@@ -10,7 +10,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="/WEB-INF/myTag.tld" prefix="lyz" %>
+<%@ taglib uri="/WEB-INF/myTag.tld" prefix="liu" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <%--<rapid:override name="description">--%>
 <%--</rapid:override>--%>
@@ -87,7 +87,7 @@
                                     <span></span>
                                 </div>
                                 <span class="shang-s">
-                                              <a  style="cursor:pointer" >评分</a><!--onclick="PaymentUtils.show()";-->
+                                              <a  onclick="" style="cursor:pointer" >评分</a>
                                         </span>
                             </div>
                             <div class="share-sd">
@@ -173,72 +173,6 @@
                 <%--所属标签 end--%>
 
 
-                <%--版权声明 start--%>
-            <div class="authorbio wow fadeInUp" >
-                <img alt="${thoughtDetailVo.userCustom.userNickname}" src="${thoughtDetailVo.userCustom.userAvatar}"
-                     class="avatar avatar-64 photo" height="64" width="64">
-                <ul class="postinfo">
-                    <li></li>
-                    <li><strong>版权声明：</strong>本站原创想法，于<fmt:formatDate
-                            value="${thoughtDetailVo.thoughtCustom.thoughtPostTime}"
-                            pattern="yyyy-MM-dd"/>，由
-                            <strong>
-                                    ${thoughtDetailVo.userCustom.userNickname}
-                            </strong>
-                        发表。
-                    </li>
-                    <li class="reprinted"><strong>转载请注明：</strong>
-                        <a href="/thought/${thoughtDetailVo.thoughtCustom.thoughtId}"
-                           rel="bookmark"
-                           title="本文固定链接 /thought/${thoughtDetailVo.thoughtCustom.thoughtId}">
-                                ${thoughtDetailVo.thoughtCustom.thoughtTitle} | ${options.optionSiteTitle}</a>
-                    </li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-                <%--版权声明 end--%>
-
-
-                <%--相关想法 start--%>
-            <div id="single-widget">
-                <div class="wow fadeInUp" data-wow-delay="0.3s">
-                    <aside id="related_post-2" class="widget">
-                        <h3 class="widget-title">
-                            <span class="s-icon"></span>相关想法
-                        </h3>
-                        <div id="related_post_widget">
-                            <ul>
-                                <c:forEach items="${similarThoughtList}" var="s">
-                                    <li>
-                                        <a href="/thought/${s.thoughtId}">${s.thoughtTitle}</a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                        <div class="clear"></div>
-                    </aside>
-                        <%--猜你喜欢 start--%>
-                    <aside id="hot_post-8" class="widget hot_post">
-                        <h3 class="widget-title"><span class="s-icon"></span>猜你喜欢</h3>
-                        <div id="hot_post_widget">
-                            <ul>
-                                <c:forEach items="${mostViewThoughtList}" var="m">
-                                    <li>
-                                        <a href="/thought/${m.thoughtId}">
-                                                ${m.thoughtTitle}
-                                        </a>
-                                    </li>
-                                </c:forEach>
-
-                            </ul>
-                        </div>
-                        <div class="clear"></div>
-                    </aside>
-                        <%--猜你喜欢 end--%>
-                </div>
-                <div class="clear"></div>
-            </div>
-                <%--相关想法 end--%>
 
                 <%--上一篇下一篇 start--%>
             <nav class="nav-single">
@@ -289,7 +223,7 @@
             <div class="scroll-comments"></div>
             <div id="comments" class="comments-area">
                 <div id="respond" class="comment-respond">
-                    <h3 id="reply-title" class="comment-reply-title"><span id="reply-title-word">发表评论</span>
+                    <h3 id="reply-title" class="comment-reply-title"><span id="reply-title-word">评论</span>
                         <a rel="nofollow" id="cancel-comment-reply-link"
                            href="/thought/${thoughtDetailVo.thoughtCustom.thoughtId}#respond"
                            style="">取消回复</a>
@@ -298,10 +232,10 @@
                         <c:if test="${sessionScope.user!=null}">
                             <div class="user_avatar">
                                 <img alt="刘亚东"
-                                     src="${sessionScope.user.userAvatar}"
+                                     src="${sessionScope.user.getUserAvatar()}"
                                      class="avatar avatar-64 photo" height="64" width="64">
-                                登录者：${sessionScope.user.userNickname}
-                                <br> <a href="javascript:void(0)" onclick="logout()">登出</a>
+                                昵称：${sessionScope.user.userNickname}
+
                                 <input type="hidden" name="commentRole" value="1">
                                 <input type="hidden" name="commentAuthorName"
                                        value="${sessionScope.user.getUserNickname()}">

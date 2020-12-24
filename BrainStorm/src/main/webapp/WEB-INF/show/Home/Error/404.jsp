@@ -10,7 +10,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="/WEB-INF/myTag.tld" prefix="lyz" %>
+<%@ taglib uri="/WEB-INF/myTag.tld" prefix="liu" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -56,7 +56,7 @@
                         <div id="btn">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a class="button" href="/">返回首页</a>
-                            <a class="button" href="http://wpa.qq.com/msgrd?v=3&uin=847064370&site=qq&menu=yes">联系站长</a>
+                            <a class="button" href="http://wpa.qq.com/msgrd?v=3&uin=1449462080&site=qq&menu=yes">联系站长</a>
                             <div class="clear"></div>
                         </div>
                         </center>

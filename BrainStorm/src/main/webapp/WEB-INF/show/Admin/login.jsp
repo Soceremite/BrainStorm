@@ -138,7 +138,7 @@
                     if(data.code==0) {
                         alert(data.msg);
                     } else {
-                        window.location.href="/admin";
+                        window.location.href="/";
 
                     }
                 },

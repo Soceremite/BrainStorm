@@ -169,7 +169,7 @@
                 }
                 </c:forEach>
                 $("#thoughtChildCategoryId").html("<option value=''selected>二级分类</option>"+optionstring);
-                form.render('select'); //这个很重要
+                form.render('select');
             })
 
 //end

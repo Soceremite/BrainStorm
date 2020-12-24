@@ -32,7 +32,7 @@ public class TagController {
 	public ModelAndView ThoughtListByTagView(@PathVariable("tagId") Integer tagId) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		//设置每页显示条数、
-		int pageSize = 10;
+		int pageSize = 3;
 		List<ThoughtListVo> thoughtListVoList = tagService.getThoughtListByPage(1,null,pageSize,tagId);
 
 		modelAndView.addObject("thoughtListVoList",thoughtListVoList);
@@ -52,7 +52,7 @@ public class TagController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		//设置每页显示条数
-		int pageSize = 10;
+		int pageSize = 3;
 		List<ThoughtListVo> thoughtListVoList = tagService.getThoughtListByPage(1,pageNow,pageSize,tagId);
 		modelAndView.addObject("thoughtListVoList",thoughtListVoList);
 		modelAndView.setViewName("Home/Page/thoughtListByTag");

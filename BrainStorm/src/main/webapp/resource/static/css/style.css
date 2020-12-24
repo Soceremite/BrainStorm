@@ -494,8 +494,9 @@ a, button, input {
 
 /** 主导航 **/
 #menu-box {
-    background: #fff;
-    width: 100%;
+    background: #81d8cf;
+    width: 71%;
+    margin-left: 14.4%;
     z-index: 999;
     right: 0;
     border-bottom: 1px solid #ddd;
@@ -2607,7 +2608,7 @@ img.alignleft {
 }
 
 #sidebar h3 {
-    background: #f8f8f8;
+    background: #81d8cf;
     height: 40px;
     line-height: 40px;
     border-bottom: 1px solid #ddd;
@@ -3138,7 +3139,7 @@ img.alignleft {
 
 .about-inf {
     text-align: center;
-    background: #f8f8f8;
+    background: #81d8cf;
     float: left;
     font-size: 14px;
     width: 100%;

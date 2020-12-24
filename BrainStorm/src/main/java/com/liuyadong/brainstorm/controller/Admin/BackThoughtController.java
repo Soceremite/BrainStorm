@@ -1,5 +1,5 @@
 package com.liuyadong.brainstorm.controller.Admin;
-
+import com.liuyadong.brainstorm.entity.User;
 import com.liuyadong.brainstorm.entity.Thought;
 import com.liuyadong.brainstorm.entity.custom.*;
 import com.liuyadong.brainstorm.service.ThoughtService;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.util.Date;
 import java.util.List;
 
@@ -82,8 +84,10 @@ public class BackThoughtController {
 
     //创作者中心添加想法提交操作
     @RequestMapping(value = "/insertSubmit",method = RequestMethod.POST)
-    public String insertThoughtSubmit(Thought thought) throws Exception {
-
+    public String insertThoughtSubmit(Thought thought,HttpServletRequest request) throws Exception {
+        HttpSession session=request.getSession();
+        User  user=(User) session.getAttribute("User");
+        thought.setThoughtUserId(user.getUserId());
         thought.setThoughtPostTime(new Date());
         thought.setThoughtUpdateTime(new Date());
         thought.setThoughtIsComment(1);

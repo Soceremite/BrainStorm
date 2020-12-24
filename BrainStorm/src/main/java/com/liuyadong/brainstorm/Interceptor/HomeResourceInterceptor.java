@@ -47,15 +47,6 @@ public class HomeResourceInterceptor implements WebRequestInterceptor {
         //标签列表显示
 		List<TagCustom> tagList = tagService.listTag(1);
 		request.setAttribute("tagList",tagList,WebRequest.SCOPE_REQUEST);
-		//获得随机想法
-		List<ThoughtCustom> randomThoughtList = thoughtService.listRandomThought(1,8);
-		request.setAttribute("randomThoughtList",randomThoughtList,WebRequest.SCOPE_REQUEST);
-		//获得热评想法
-		List<ThoughtCustom> mostCommentThoughtList = thoughtService.listThoughtByCommentCount(1,8);
-		request.setAttribute("mostCommentThoughtList",mostCommentThoughtList,WebRequest.SCOPE_REQUEST);
-		//最新评论
-        List<CommentListVo> recentCommentList = commentService.listRecentComment(10);
-        request.setAttribute("recentCommentList",recentCommentList,WebRequest.SCOPE_REQUEST);
 
 		//获得网站概况
 		List<String> siteBasicStatistics = new ArrayList<String>();

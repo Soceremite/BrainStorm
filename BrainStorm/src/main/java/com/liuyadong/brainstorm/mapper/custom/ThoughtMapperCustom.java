@@ -51,12 +51,6 @@ public interface ThoughtMapperCustom {
 	//获得下一篇想法
 	public ThoughtCustom getPreThought(@Param(value="status") Integer status,@Param(value="id") Integer id) throws Exception;
 	
-	//获得随机想法
-	public List<ThoughtCustom> listRandomThought(@Param(value="status") Integer status,@Param(value = "limit") Integer limit) throws  Exception;
-
-	//热评想法
-	public List<ThoughtCustom> listThoughtByCommentCount(@Param(value="status") Integer status,@Param(value = "limit") Integer limit) throws Exception;
-
 	//获得该分类的想法数
 	public Integer countThoughtByCategory(@Param(value="status") Integer status,@Param(value = "id") Integer id) throws Exception;
 

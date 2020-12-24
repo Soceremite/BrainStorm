@@ -218,21 +218,6 @@
         limit 1
     </select>
 
-    <!--获得随机想法-->
-    <select id="listRandomThought" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">
-        SELECT
-        <include refid="thought_table_all_columns"/>
-        FROM
-        `thought`
-        <where>
-            <if test="status!=null">
-                thought_status=#{status}
-            </if>
-        </where>
-        ORDER BY
-        RAND()
-        limit #{limit}
-    </select>
 
     <!--获得评论数较多的想法列表-->
     <select id="listThoughtByCommentCount" resultType="com.liuyadong.brainstorm.entity.custom.ThoughtCustom">

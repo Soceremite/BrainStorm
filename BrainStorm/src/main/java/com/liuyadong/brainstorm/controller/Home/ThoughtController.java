@@ -39,15 +39,7 @@ public class ThoughtController {
 		if(thoughtDetailVo!=null) {
 
 			modelAndView.addObject("thoughtDetailVo", thoughtDetailVo);
-			//相关想法
-			Integer parentCategoryId = thoughtService.getThoughtById(1, thoughtId).getThoughtParentCategoryId();
-			Integer childCategoryId = thoughtService.getThoughtById(1, thoughtId).getThoughtChildCategoryId();
-			List<ThoughtCustom> similarThoughtList = thoughtService.listThoughtWithSameCategory(1, parentCategoryId, childCategoryId, 5);
-			modelAndView.addObject("similarThoughtList", similarThoughtList);
-
-			//猜你喜欢
-			List<ThoughtCustom> mostViewThoughtList = thoughtService.listThoughtByViewCount(1, 5);
-			modelAndView.addObject("mostViewThoughtList", mostViewThoughtList);
+		
 			//获取下一篇想法
 			ThoughtCustom afterThought = thoughtService.getAfterThought(1, thoughtId);
 			modelAndView.addObject("afterThought", afterThought);
@@ -107,7 +99,7 @@ public class ThoughtController {
 	public ModelAndView SearchPageView(HttpServletRequest request,Model model) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		//设置每页显示的数量
-		int pageSize = 10;
+		int pageSize = 3;
 		String query = request.getParameter("query");
 		List<ThoughtSearchVo> thoughtSearchVoList = thoughtService.listSearchResultByPage(1,request,model,null,pageSize,query);
 		if(thoughtSearchVoList!=null) {
@@ -125,7 +117,7 @@ public class ThoughtController {
 	public  ModelAndView SearchPageByPageView(HttpServletRequest request, Model model,@PathVariable("pageNow") Integer pageNow) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		//设置每页显示的数量
-		int pageSize = 10;
+		int pageSize = 3;
 		String query = request.getParameter("query");
 		List<ThoughtSearchVo> thoughtSearchVoList = thoughtService.listSearchResultByPage(1,request,model,pageNow,pageSize,query);
 		modelAndView.addObject("thoughtSearchVoList", thoughtSearchVoList);
